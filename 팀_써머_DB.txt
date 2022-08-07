@@ -1,0 +1,5 @@
+팀 써머 오라클 데이터베이스
+DBname : perfumeInfo
+username : ADMIN
+pw : Projcet123456
+wallet pw : abc123456
