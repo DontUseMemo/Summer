@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### DataSource path ingnore ###
+D:\Summer\oppu\src\main\resources\application.properties
