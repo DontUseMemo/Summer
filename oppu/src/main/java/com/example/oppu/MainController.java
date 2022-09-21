@@ -8,6 +8,6 @@ public class MainController {
 
     @RequestMapping("/")
     public String root() {
-        return "redirect:/board/list";
+        return "index";
     }
 }
