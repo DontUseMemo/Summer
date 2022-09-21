@@ -30,6 +30,9 @@ dependencies {
     //JPA : Java Persistence API : 자바에서 DB와 연결되는 객체지향 API (인터페이스)
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
+    //유효성 검사를 위한 어노테이션 추가
+   implementation 'org.springframework.boot:spring-boot-starter-validation'
+
     //ojdbc8 오라클에서 제공하는 라이브러리로 JAVA와 연동하기 위해 쓰임 (8버전이 19c에 활용 가능)
     runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
 
@@ -37,6 +40,9 @@ dependencies {
     implementation 'com.oracle.database.security:oraclepki'
     implementation 'com.oracle.database.security:osdt_core'
     implementation 'com.oracle.database.security:osdt_cert'
+
+    //브라우저로 전송되는 코드가 변경되면 자동으로 어플리케이션을 재시작하여 변경내용 반영
+   developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
 
 tasks.named('test') {
