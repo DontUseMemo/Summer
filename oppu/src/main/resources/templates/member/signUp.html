@@ -7,20 +7,35 @@
 </head>
 <body>
 <div>
-    <h1>회원가입</h1>
     <form>
-        <span>아이디* :</span>
-        <form>
-            <input type="text" name="id">
-            <input type="button" value="아이디 중복" onclick="">
-        </form>
-        <span>비밀번호* :</span>
-        <input type="text" name="password">
-        <span>비밀번호 확인* :</span>
-        <input type="text" name="passwordCheck">
-        <span>이메일* :</span>
-        <input type="text" name="email">
-        <input type="submit" value="가입하기">
+        <section class="text-gray-600 body-font">
+            <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
+                <div class="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:m-auto w-full mt-10 md:mt-0">
+                    <h2 class="text-gray-900 text-3xl font-bold title-font mb-5">회원가입</h2>
+                    <div class="relative mb-4">
+                        <label for="id" class="leading-7 text-sm text-gray-600">아이디</label>
+                        <input type="text" id="id" name="id" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                    <div class="relative mb-4">
+                        <label for="nickName" class="leading-7 text-sm text-gray-600">닉네임</label>
+                        <input type="text" id="nickName" name="nickName" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                    <div class="relative mb-4">
+                        <label for="password" class="leading-7 text-sm text-gray-600">비밀번호</label>
+                        <input type="text" id="password" name="password" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                    <div class="relative mb-4">
+                        <label for="passwordCheck" class="leading-7 text-sm text-gray-600">비밀번호 확인</label>
+                        <input type="text" id="passwordCheck" name="passwordCheck" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                    <div class="relative mb-4">
+                        <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
+                        <input type="email" id="email" name="email" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                    <button type="submit" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">가입하기</button>
+                </div>
+            </div>
+        </section>
     </form>
 </div>
 </body>
