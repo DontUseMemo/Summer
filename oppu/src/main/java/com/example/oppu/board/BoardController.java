@@ -54,7 +54,10 @@ public class BoardController {
 
     //게시판 새글쓰기
     @PostMapping("/insert")
-    public String insertBoard(@RequestParam String category, @RequestParam String title, @RequestParam String nickname, @RequestParam String content) {
+    public String insertBoard(@RequestParam String category,
+                              @RequestParam String title,
+                              @RequestParam String nickname,
+                              @RequestParam String content) {
         this.boardService.insertBoard(category, title, nickname, content);
         return "redirect:/board/list";
     }

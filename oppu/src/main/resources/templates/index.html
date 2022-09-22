@@ -10,7 +10,7 @@
             border: solid #1a1e21;
         }
     </style>
-    <div th:replace="/fragment/header.html :: header"></div>
+    <th:block th:replace="/fragment/header.html :: header"></th:block>
 </head>
 <body>
 <div>
@@ -105,7 +105,7 @@
 <!--            </div>-->
 <!--        </div>-->
 <!--    </footer>-->
-    <footer th:replace="/fragment/footer.html :: footer"></footer>
+    <th:block th:replace="/fragment/footer.html :: footer"></th:block>
 </div>
 </body>
 </html>
