@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,8 +23,8 @@ public class MagazineServiceImpl implements MagazineService{
     //매거진작성 메소드
     @Override
     public void insertMagazine(Magazine magazine) {
-        magazine.setCreateDate(new Date());
-        magazine.setUpdateDate(new Date());
+        magazine.setCreateDate(LocalDateTime.now());
+        magazine.setUpdateDate(LocalDateTime.now());
         magazineRepository.save(magazine);
     }
 

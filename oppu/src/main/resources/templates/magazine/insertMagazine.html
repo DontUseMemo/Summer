@@ -14,7 +14,7 @@
             <h1 class="sm:text-4xl text-xl font-medium title-font mb-2">새글 쓰기</h1>
             <p class="text-gray-500 text-base">사랑하는 회원님, 따뜻하고 유익한 글을 남겨주세요.</p>
         </div>
-        <form th:action="@{/board/insert}" method="post">
+        <form th:action="@{/magazine/insertMagazine}" method="post">
             <div class="grid grid-cols-1">
 <!--                카테고리-->
                 <div class="mb-4">
@@ -32,10 +32,10 @@
                 </div>
 <!--                닉네임-->
                 <div class="mb-4">
-                    <label for="nickname" class="block mb-2 text-sm font-medium text-gray-900">닉네임</label>
-                    <input type="text" id="nickname" name="nickname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="닉네임을 입력해주세요." required="">
+                    <label for="writer" class="block mb-2 text-sm font-medium text-gray-900">닉네임</label>
+                    <input type="text" id="writer" name="writer" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="닉네임을 입력해주세요." required="">
                 </div>
-<!--                글 내용-->
+                글 내용
                 <div class="mb-4">
                     <label for="editor" class="block mb-2 text-sm font-medium text-gray-900">내용</label>
                     <div class="w-full bg-gray-50 rounded-lg border border-gray-200">
@@ -67,7 +67,7 @@
 <!--                등록, 취소 버튼-->
                 <div class="mb-4">
                     <button type="submit" class="text-white bg-orange-300 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">등록하기</button>
-                    <a class="text-white bg-slate-200 hover:bg-slate-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" href="/board/list">
+                    <a class="text-white bg-slate-200 hover:bg-slate-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" href="/magazine/getMagazineList">
                         <button>취소하기</button>
                     </a>
                 </div>
