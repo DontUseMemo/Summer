@@ -19,9 +19,9 @@ public class ReplyController {
     private final ReplyService replyService;
 
     @PostMapping("/create/{id}")
-    public String createAnswer(Model model, @PathVariable("id") Long id, @RequestParam String reply) {
+    public String createAnswer(@PathVariable("id") Long id, @RequestParam String reply) {
         Board board = this.boardService.getBoardRequest(id);
         this.replyService.create(board, reply);
-        return String.format("redirect:/board/detail/%s", id);
+        return String.format("redirect:/board/getBoard/%s", id);
     }
 }
