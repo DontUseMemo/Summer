@@ -2,6 +2,7 @@ package com.example.oppu.admin;
 
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -23,8 +24,8 @@ public class AdminServiceImpl implements AdminService{
     //관리자가입 메소드
     @Override
     public void insertAdmin(Admin admin) {
-        admin.setCreateDate(new Date());
-        admin.setUpdateDate(new Date());
+        admin.setCreateDate(LocalDateTime.now());
+        admin.setUpdateDate(LocalDateTime.now());
         adminRepository.save(admin);
     }
 

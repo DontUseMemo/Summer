@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>글 상세보기</title>
+    <th:block th:replace="/fragment/header.html :: header"></th:block>
+</head>
+<body>
+<!--메인-->
+<section class="text-gray-600 body-font overflow-hidden">
+    <div class="container px-5 pt-10 pb-48 mx-auto">
+        <div class="flex flex-wrap">
+            <div class="p-12 flex flex-col w-full items-start">
+                <span class="inline-block py-1 px-2 mb-4 rounded bg-yellow-50 text-yellow-500 text-xs font-medium tracking-widest" th:text="${board.category}"></span>
+                <a class="inline-flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
+                    <img alt="blog" src="https://dummyimage.com/104x104" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
+                    <span class="flex-grow flex flex-col pl-4">
+                        <span class="title-font font-medium text-gray-900" th:text="${board.nickname}"></span>
+                        <span class="text-gray-400 text-xs tracking-widest mt-0.5" th:text="${board.createDate}"></span>
+                    </span>
+                </a>
+                <span class="text-gray-400 mr-3 inline-flex items-center ml-auto leading-none text-sm pr-3 py-1">
+                    <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>조회수 : ?
+                </span>
+<!--                게시글 내용-->
+                <h2 class="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-4 mb-4" th:text="${board.title}"></h2>
+                <p class="leading-relaxed mb-8" th:text="${board.content}"></p>
+                <div class="flex items-center flex-wrap pt-4 mb-4 border-t-2 border-gray-100 mt-auto w-full">
+                    <span class="text-gray-400 inline-flex items-center leading-none text-sm" th:text="|${#lists.size(board.replyList)}개의 답변이 있습니다.|">
+                        <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                          <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                        </svg>
+                    </span>
+                </div>
+<!--                댓글 작성하기-->
+                <form th:action="@{|/reply/create/${board.id}|}" method="post" class="flex flex-grow flex-col mt-auto w-full">
+                    <div class="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200">
+                        <div class="py-2 px-4 bg-white rounded-t-lg">
+                            <label for="reply" class="sr-only">Your comment</label>
+                            <textarea id="reply" name="reply" rows="4" class="px-0 w-full text-sm text-gray-900 bg-white border-0" placeholder="로그인을 한 후, 댓글을 남길 수 있어요!" required></textarea>
+                        </div>
+                    </div>
+                    <div class="flex pl-4 mt-4  w-full mx-auto">
+                        <button type="submit" class="flex ml-auto text-white bg-orange-300 border-0 py-2 px-6 focus:outline-none hover:bg-orange-600 rounded">답변 등록하기</button>
+                    </div>
+                </form>
+<!--                댓글 목록-->
+                <div class="grid grid-col-1">
+                    <ul class="divide-y divide-gray-200">
+                        <li th:each="reply : ${board.replyList}">
+                            <div>댓글 작성자 닉네임</div>
+                            <div th:text="${reply.content}"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--메인 끝-->
+
+<!--푸터-->
+<th:block th:replace="/fragment/footer.html :: footer"></th:block>
+<!--푸터 끝-->
+</body>
+</html>
