@@ -1,4 +1,4 @@
-package com.example.oppu.Perfume;
+package com.example.oppu.Perfume.DTO;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
