@@ -27,7 +27,7 @@
         </form>
 <!--        게시글 작성버튼-->
         <div class="flex pl-4 my-2 lg:w-2/3 w-full mx-auto">
-            <a class="flex ml-auto text-white text-sm bg-orange-300 border-0 py-2 px-6  focus:outline-none hover:bg-orange-400 rounded-lg" th:href="@{/board/insert}">
+            <a class="flex ml-auto text-white text-sm bg-orange-300 border-0 py-2 px-6  focus:outline-none hover:bg-orange-400 rounded-lg" th:href="@{/magazine/insertMagazine}">
                 <button >게시글 쓰기</button>
             </a>
         </div>
@@ -37,22 +37,22 @@
                 <thead>
                     <tr>
                         <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">게시글 번호</th>
-                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">작성자</th>
                         <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">제목</th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">작성자</th>
                         <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">등록일</th>
                         <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">조회수</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="board : ${boardList}">
-                        <td class="px-4 py-3" th:text="${board.id}"></td>
-                        <td class="px-4 py-3" th:text="${board.nickname}"></td>
-                        <td class="px-4 py-3">
-                            <a th:href="@{|/board/detail/${board.id}|}" th:text="${board.title}"></a>
-                            <span class="text-sm text-gray-600" th:if="|(${#lists.size(board.replyList) > 0})|" th:text="|(${#lists.size(board.replyList)})|"></span>
-                        </td>
-                        <td class="px-4 py-3" th:text="${board.createDate}"></td>
-                        <td class="px-4 py-3" th:text="조회수"></td>
+                    <tr th:each="magazine : ${paging}">
+                        <td class="px-4 py-3" th:text="${magazine.id}"></td>
+                        <td class="px-4 py-3"> <a th:href="@{/magazine/getMagazine(
+                                id=${magazine.id}
+                                )}"
+                                th:text="${magazine.title}"></a></td>
+                        <td class="px-4 py-3" th:text="${magazine.writer}"></td>
+                        <td class="px-4 py-3" th:text="${magazine.createDate}"></td>
+                        <td class="px-4 py-3" th:text="${magazine.recommendNumber}"></td>
                     </tr>
                 </tbody>
             </table>
