@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Title</title>
+    <th:block th:replace="/fragment/header02.html :: header"></th:block>
+</head>
+<body>
+<!--메인-->
+<section class="text-gray-600 body-font">
+    <div class="container px-5 pt-10 pb-48 mx-auto">
+        <div class="flex flex-col text-center w-full mb-4">
+            <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">매거진</h1>
+            <p class="lg:w-2/3 mx-auto leading-relaxed text-base">이 달의 매거진을 살펴보세요.</p>
+        </div>
+<!--게시글 검색하기-->
+        <form>
+            <label for="boardSearch" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+            <div class="relative lg:w-2/6 w-full mx-auto overflow-auto">
+                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+                <input type="search" id="boardSearch" name="boardSearch" class="w-full block p-4 pl-10 text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500" placeholder="검색하고 싶은 게시글 제목 제시어를 입력해주세요" required="">
+                <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-orange-300 hover:bg-orange-400 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2">게시글 검색</button>
+            </div>
+        </form>
+<!--        게시글 작성버튼-->
+        <div class="flex pl-4 my-2 lg:w-2/3 w-full mx-auto">
+            <a class="flex ml-auto text-white text-sm bg-orange-300 border-0 py-2 px-6  focus:outline-none hover:bg-orange-400 rounded-lg" th:href="@{/magazine/insertMagazine}">
+                <button >게시글 쓰기</button>
+            </a>
+        </div>
+<!--        게시글 목록-->
+        <div class="lg:w-5/6 w-full mx-auto overflow-auto">
+            <table class="table-auto w-full text-left whitespace-no-wrap">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">게시글 번호</th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">제목</th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">작성자</th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">등록일</th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">조회수</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="magazine : ${paging}">
+                        <td class="px-4 py-3" th:text="${magazine.id}"></td>
+                        <td class="px-4 py-3"> <a th:href="@{/magazine/getMagazine(
+                                id=${magazine.id}
+                                )}"
+                                th:text="${magazine.title}"></a></td>
+                        <td class="px-4 py-3" th:text="${magazine.writer}"></td>
+                        <td class="px-4 py-3" th:text="${magazine.createDate}"></td>
+                        <td class="px-4 py-3" th:text="${magazine.recommendNumber}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!--메인 끝-->
+
+<!--푸터-->
+<th:block th:replace="/fragment/footer02.html :: footer"></th:block>
+<!--푸터 끝-->
+</body>
+</html>

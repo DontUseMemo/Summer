@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>매거진 상세</title>
-    <th:block th:replace="/fragment/header.html :: header"></th:block>
+    <th:block th:replace="/fragment/header02.html :: header"></th:block>
 </head>
 <body>
 <form th:action="@{/magazine/updateMagazine}" method="POST">
@@ -42,6 +42,6 @@
 </form>
 <a th:href="@{/magazine/deleteMagazine(id=${magazine.id})}">글삭제</a>
 <a th:href="@{/magazine/getMagazineList}">글목록</a>
-<th:block th:replace="/fragment/footer.html :: footer"></th:block>
+<th:block th:replace="/fragment/footer02.html :: footer"></th:block>
 </body>
 </html>
