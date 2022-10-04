@@ -21,6 +21,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     //롬복 : 도메인(class)의 getter, setter, builder 등으로 자동으로 코드 생성(@어노테이션) (단, 컴파일에서만)
@@ -43,6 +44,10 @@ dependencies {
 
     //브라우저로 전송되는 코드가 변경되면 자동으로 어플리케이션을 재시작하여 변경내용 반영
    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    //spring security
+    implementation 'org.springframework.boot:spring-boot-starter-securiy'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 }
 
 tasks.named('test') {
