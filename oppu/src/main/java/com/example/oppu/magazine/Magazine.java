@@ -1,15 +1,21 @@
 package com.example.oppu.magazine;
 
 import com.example.oppu.base_entity.BaseTimeEntity;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@DynamicInsert
 public class Magazine extends BaseTimeEntity {
 
     @Id

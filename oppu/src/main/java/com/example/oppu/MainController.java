@@ -10,4 +10,9 @@ public class MainController {
     public String root() {
         return "index";
     }
+
+    @RequestMapping("/admin")
+    public String login() {
+        return "/admin/login";
+    }
 }

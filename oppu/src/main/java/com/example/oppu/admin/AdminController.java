@@ -69,4 +69,6 @@ public class AdminController {
         model.addAttribute("admin", adminService.getAdminWhereIdOrEmail(admin.getEmail(), admin.getAdminId()));
         return "/admin/resultAdmin";
     }
+
+
 }

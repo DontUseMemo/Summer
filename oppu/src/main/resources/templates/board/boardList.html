@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:replace="/fragment/header :: head"></div>
+    <style>
+        .table-responsive {
+            /*padding: 150px 130px 100px;*/
+            padding-top: 150px;
+            padding-bottom: 100px;
+            margin-right: 130px;
+            margin-left: 130px;
+        }
+        h1 {
+            font-weight: bold;
+            margin-bottom: 50px;
+            color: #525252;
+        }
+        th {
+            text-align: center;
+            color: #4d4d4d;
+        }
+        th:nth-child(2) { width: 50%; }
+        tr td:nth-child(2) a {
+            color: #3a3a3a;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        @media screen and (max-width: 1210px) {
+            .table-responsive {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+        }
+
+        @media screen and (max-width: 780px) {
+            th:first-child { display: none }
+            th:nth-child(3) { display: none }
+            th:nth-child(4) { display: none }
+
+            td:first-child { display: none }
+            td:nth-child(3) { display: none }
+            td:nth-child(4) { display: none }
+
+            th:nth-child(2) { width: 80%; }
+        }
+    </style>
+</head>
+<body>
+<div th:replace="/fragment/nav :: top-nav"></div>
+<div th:replace="/fragment/nav :: side-nav"></div>
+
+<div class="table-responsive">
+<h1>커뮤니티</h1>
+<!-- The form -->
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>글번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>등록일</th>
+                <th>조회수</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="board : ${paging}">
+                <td th:text="${board.id}"></td>
+                <td>
+                    <a th:href="@{|/board/getBoard/${board.id}|}" th:text="${board.title}"></a>
+                    <span th:if="|(${#lists.size(board.replyList) > 0})|" th:text="|(${#lists.size(board.replyList)})|"></span>
+                </td>
+                <td th:text="${board.nickname}"></td>
+                <td th:text="${board.createDate}"></td>
+                <td th:text="0"></td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/board/insert}" class="btn btn-light">글쓰기</a>
+    <!--페이징-->
+    <nav>
+        <ul th:if="${!paging.isEmpty()}" class="pagination justify-content-center">
+            <li class="page-item" th:unless="${paging.number == 0}">
+                <a class="page-link" th:href="@{|?page=${(paging.number)-1}|}">이전</a>
+            </li>
+            <li class="page-item" th:each="page : ${#numbers.sequence(0, (paging.totalPages)-1)}"
+                th:if="${page >= (paging.number)-2 and page <= (paging.number)+2}">
+                <a class="page-link" th:text="${page}" th:href="@{|?page=${page}|}">1</a>
+            </li>
+            <li class="page-item" th:unless="${paging.number == (paging.totalPages)-1}">
+                <a class="page-link" th:href="@{|?page=${(paging.number)+1}|}">다음</a>
+            </li>
+        </ul>
+    </nav>
+
+</div>
+
+<div th:replace="/fragment/footer :: footer"></div>
+</body>
+</html>
