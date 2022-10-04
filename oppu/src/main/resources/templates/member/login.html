@@ -1,32 +1,80 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <script src="https://cdn.tailwindcss.com"></script>
     <meta charset="UTF-8">
-    <title>로그인</title>
+    <title>Title</title>
+    <div th:replace="/fragment/header :: head"></div>
+    <style>
+        .wrapper {
+            margin-top: 80px;
+            margin-bottom: 80px;
+        }
+
+        .form-signin {
+            max-width: 380px;
+            padding: 15px 35px 45px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .form-signin .form-signin-heading,
+        .form-signin {
+            margin-bottom: 30px;
+        }
+
+        .form-signin {
+            font-weight: normal;
+        }
+
+        .form-signin .form-control {
+            position: relative;
+            font-size: 16px;
+            height: auto;
+            padding: 10px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .form-signin .form-control:focus {
+            z-index: 2;
+        }
+
+        .form-signin input[type="text"] {
+            margin-bottom: -1px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .form-signin input[type="password"] {
+            margin-bottom: 20px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        .btn {
+            width: 100%;
+        }
+        form div {
+            text-align: right;
+        }
+        .sign-up {
+            margin-bottom: 20px;
+        }
+
+    </style>
 </head>
 <body>
-<div>
-    <form>
-        <section class="text-gray-600 body-font">
-            <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
-                <div class="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:m-auto w-full mt-10 md:mt-0">
-                    <h2 class="text-gray-900 text-3xl font-bold title-font mb-5">로그인</h2>
-                    <div class="relative mb-4">
-                        <label for="id" class="leading-7 text-sm text-gray-600">아이디</label>
-                        <input type="text" id="id" name="id" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                    </div>
-                    <div class="relative mb-4">
-                        <label for="password" class="leading-7 text-sm text-gray-600">비밀번호</label>
-                        <input type="text" id="password" name="password" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                    </div>
-                    <div class="relative mb-4">
-                        <a href="#" class="text-sm text-slate-500 hover:text-yellow-400">회원가입</a>
-                    </div>
-                    <button type="submit" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">로그인</button>
-                </div>
-            </div>
-        </section>
+<div class="wrapper">
+    <form class="form-signin">
+        <h2 class="form-signin-heading">로그인</h2>
+        <input type="text" class="form-control" name="id" placeholder="아이디를 입력해주세요" required="" autofocus="" />
+        <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
+        <div class="sign-up">
+            <a href="/sample/signUp">회원가입</a>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
     </form>
 </div>
 </body>
