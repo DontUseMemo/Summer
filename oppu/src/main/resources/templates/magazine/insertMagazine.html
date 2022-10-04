@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="/fragment/header :: head"></div>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .write-form {
+            padding-top: 150px;
+            padding-bottom: 100px;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="/fragment/nav :: top-nav"></div>
+<div th:replace="/fragment/nav :: side-nav"></div>
+<div class="write-form">
+    <div class="container" role="main">
+        <h2>매거진 글쓰기</h2>
+        <form th:action="@{/magazine/insertMagazine}" name="form" id="form" role="form" method="post">
+
+<!--            <div class="mb-3">-->
+<!--                <label for="category">카테고리</label>-->
+<!--                <select id="category" name="category" class="form-select">-->
+<!--                    <option value="chat">잡담</option>-->
+<!--                    <option value="perfume">향수</option>-->
+<!--                </select>-->
+<!--            </div>-->
+
+            <div class="mb-3">
+                <label for="title">제목</label>
+                <input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해주세요">
+            </div>
+
+            <div class="mb-3">
+                <label for="writer">작성자</label>
+                <input type="text" class="form-control" name="writer" id="writer" placeholder="이름을 입력해 주세요">
+            </div>
+
+            <div class="mb-3">
+                <label for="content">내용</label>
+                <textarea class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력해주세요"></textarea>
+            </div>
+            <button type="submit" class="btn btn-sm btn-primary" id="save">등록</button>
+            <a href="/magazine/insertMagazine">
+                <button href="/magazine/getMagazineList" type="button" class="btn btn-sm btn-primary" id="list">목록</button>
+            </a>
+        </form>
+    </div>
+</div>
+<div th:replace="/fragment/footer :: footer"></div>
+</body>
+</html>

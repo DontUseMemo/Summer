@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:replace="/fragment/header :: head"></div>
+    <style>
+        .container {
+            padding-top: 150px;
+            padding-bottom: 130px;
+        }
+
+        .container h1 {
+            font-weight: bold;
+            margin-bottom: 50px;
+            color: #525252;
+        }
+
+        #board tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        #board tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        p {
+            font-weight: bold;
+            margin-top: 30px;
+        }
+
+        #board tbody tr:last-child { height: 200px; }
+
+        #reply tr th { width: 10%; }
+        #reply tr { height: 50px; }
+    </style>
+</head>
+<body>
+<div th:replace="/fragment/nav :: top-nav"></div>
+<div th:replace="/fragment/nav :: side-nav"></div>
+
+<div class="container">
+    <h1>매거진 상세보기</h1>
+    <table id="board" class="table">
+        <thead>
+        <tr>
+            <th>글번호</th>
+            <th th:text="${magazine.id}"></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>제목</th>
+                <td th:text="${magazine.title}">게시판 제목이 표현됨</td>
+            </tr>
+            <tr>
+                <th>작성자</th>
+                <td th:text="${magazine.writer}">닉네임이 표시됨</td>
+            </tr>
+            <tr>
+                <th>작성일</th>
+                <td th:text="${magazine.createDate}">2022/5/5</td>
+            </tr>
+            <tr>
+                <th>조회수</th>
+                <td th:text="${magazine.views}">0</td>
+            </tr>
+            <tr>
+                <td colspan="2" th:text="${magazine.content}">게시글 내용이 출력될 예정</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
+        <button th:href="@{/magazine/getMagazineList}" type="button" class="btn btn-light">목록</button>
+        <button href="#" type="button" class="btn btn-light">수정</button>
+        <button th:href="@{/magazine/deleteMagazine(id=${magazine.id})}" type="button" class="btn btn-light">삭제</button>
+        <button href="#" type="button" class="btn btn-light">글쓰기</button>
+    </div>
+</div>
+
+<div th:replace="/fragment/footer :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="/fragment/header :: head"></div>
+    <title>oppu_main</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .tables {
+            display: flex;
+            margin: 100px -5px;
+        }
+
+        .column {
+            flex: 50%;
+            margin-left: 20px;
+            margin-right: 20px;
+            padding: 5px;
+        }
+
+        .column table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        td {
+            padding: 16px;
+        }
+
+        thead tr {
+            border-bottom: 1px solid #ececec;
+        }
+
+        td:first-child {
+            width: 70%;
+        }
+
+        td:not(:first-child) {
+            text-align: center;
+        }
+
+        td a {
+            text-decoration: none;
+            color: #292b2d;
+        }
+
+        @media screen and (max-width: 700px) {
+            .tables {
+                display: flex;
+                flex-direction: column;
+                margin-left:-5px;
+                margin-right:-5px;
+            }
+            .column {
+                margin-top: 50px;
+                margin-bottom: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div th:replace="/fragment/nav :: top-nav"></div>
+<div th:replace="/fragment/nav :: side-nav"></div>
+
+<!-- Header with full-height image -->
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+    <div class="w3-display-left w3-text-white" style="padding:48px">
+        <span class="w3-jumbo w3-hide-small">Start Perfume from OPPU</span><br>
+        <span class="w3-xxlarge w3-hide-large w3-hide-medium">Start Perfume from OPPU</span><br>
+        <span class="w3-large">당신의 향수를 찾아보세요</span>
+        <p><a href="/perfume/perfumeList" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">향수 찾기</a></p>
+    </div>
+    <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </div>
+</header>
+
+<!--최신글 매거진 테이블-->
+
+<div class="tables">
+    <div class="column">
+        <h2>최신글</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>제목</th>
+                    <th>조회수</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="##"><span>aa</span></a></td>
+                    <td>Smith</td>
+                    <td>50</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="column">
+        <h2>매거진</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>제목</th>
+                    <th>조회수</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="##"><span>aa</span></a></td>
+                    <td>Smith</td>
+                    <td>50</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div th:replace="/fragment/footer :: footer"></div>
+</body>
+</html>
