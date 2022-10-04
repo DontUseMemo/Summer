@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Table(name = "ALL_NOTE")
-@Entity()
+@Entity
 public class AllNote {
 
     @Id

@@ -2,41 +2,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <meta charset="UTF-8">
-    <title>향수 목록</title>
-    <th:block th:replace="/fragment/header :: header"></th:block>
+
 </head>
 <body>
 <!--향수 검색-->
-    <form>
-        <label for="perfumeSearch" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
-        <div class="relative lg:w-2/6 w-full mx-auto overflow-auto">
-            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-            </div>
-            <input type="search" id="perfumeSearch" name="boardSearch" class="w-full block p-4 pl-10 text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500" placeholder="향수를 검색해보세요" required="">
-            <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-orange-300 hover:bg-orange-400 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2">검색</button>
-        </div>
-    </form>
+<!--<form th:action="@{/perfume/perfumeList}" method="post">-->
+<table class="table table-hover">
+    <tr>
+        <th>게시글 번호</th>
+        <th style="width:50%">제목</th>
+        <th>작성자</th>
+        <th>등록일</th>
+        <th>조회수</th>
+    </tr>
+    <tr th:each="perfume : ${perfumeList}">
+        <td th:text="${perfume.perfumeName}"></td>
+        <td th:text="${perfume.brand}"></td>
+    </tr>
+</table>
+<!--</form>-->
 
-<!--향수 목록-->
-    <section class="text-gray-600 body-font">
-        <div class="container px-5 py-24 mx-auto">
-<!--            여기서 foreach문 적용하면 됨-->
-            <div class="flex flex-wrap -m-4 pl-20 pr-20">
-                <div class="lg:w-1/4 md:w-1/2 p-10 w-full">
-                    <a class="block relative h-48 rounded overflow-hidden">
-                        <img alt="이미지" class="object-cover object-center w-full h-full block p-5" src="https://dummyimage.com/420x260">
-                    </a>
-                    <div class="mt-4">
-                        <h3 name="brand" class="text-gray-500 text-xs tracking-widest title-font mb-1 text-center">브랜드가 출력될 예정</h3>
-                        <h2 name="perfume_name" class="text-gray-900 title-font text-lg font-medium text-center">향수 이름이 출력될 예정</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-<th:block th:replace="/fragment/footer :: footer"></th:block>
+
+
 </body>
 </html>
