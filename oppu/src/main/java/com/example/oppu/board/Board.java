@@ -43,7 +43,7 @@ public class Board {
 //    private int reportNumber;
 
     //baseEntity 상속받고 삭제예정
-//    private LocalDateTime createDate;
+    private LocalDateTime createDate;
 
     //댓글 리스트
     @OneToMany(mappedBy = "board")
