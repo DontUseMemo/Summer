@@ -20,5 +20,6 @@ public interface BoardService {
 
 //    public List<Board> searchEmail(String boardSearch);
 
-    public Page<Board> getList(int page);
+
+ public Page<Board> getList(int page);
 }

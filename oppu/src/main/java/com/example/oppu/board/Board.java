@@ -1,7 +1,9 @@
 package com.example.oppu.board;
 
 import com.example.oppu.reply.Reply;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,15 +12,17 @@ import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Board {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     //유저 닉네임 삭제 예정
-    @Column(length = 200, unique = true)
+    @Column(length = 200)
     private String nickname;
 
     //게시글 카테고리

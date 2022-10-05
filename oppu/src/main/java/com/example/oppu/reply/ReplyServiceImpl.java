@@ -12,6 +12,7 @@ public class ReplyServiceImpl implements ReplyService {
 
     private final ReplyRepository replyRepository;
 
+    //댓글 생성하기
     public void create(Board board, String content) {
         Reply reply = new Reply();
         reply.setContent(content);
