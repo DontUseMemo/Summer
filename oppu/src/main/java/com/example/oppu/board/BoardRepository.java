@@ -8,15 +8,17 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
-    Board findByTitle(String title);
+//    //제목으로 찾기(이후 검색에 추가될 예정)
+//    Board findByTitle(String title);
 
-    Board findByTitleAndContent(String title, String content);
+//    //제목과 내용으로 찾기(이후 검색에 추가될지 미정)
+//    Board findByTitleAndContent(String title, String content);
 
-    List<Board> findByTitleLike(String title);
+//    //
+//    @Query(value = "select b from Board b where b.title like concat('%', :boardSearch, '%') ")
+//    List<Board> findBoardsByTitle(String boardSearch);
 
-    @Query(value = "select b from Board b where b.title like concat('%', :boardSearch, '%') ")
-    List<Board> findBoardsByTitle(String boardSearch);
-
+    //기본 페이징
     Page<Board> findAll(Pageable pageable);
 
 }

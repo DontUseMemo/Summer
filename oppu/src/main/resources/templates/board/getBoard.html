@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -71,10 +71,10 @@
         </tbody>
     </table>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
-        <button href="#" type="button" class="btn btn-light">목록</button>
+        <button href="/board/boardList" type="button" class="btn btn-light">목록</button>
         <button href="#" type="button" class="btn btn-light">수정</button>
         <button href="#" type="button" class="btn btn-light">삭제</button>
-        <button href="#" type="button" class="btn btn-light">글쓰기</button>
+        <button href="/board/insert" type="button" class="btn btn-light">글쓰기</button>
     </div>
     <p th:text="|${#lists.size(board.replyList)}개의 답변이 있습니다.|"></p>
     <table id="reply" class="table border-top">
@@ -93,7 +93,7 @@
             <div class="mb-3">
                 <textarea name="reply" placeholder="댓글을 입력해주세요" class="form-control" rows="3"></textarea>
             </div>
-            <button href="#" type="submit" class="btn btn-secondary">등록</button>
+            <button type="submit" class="btn btn-secondary">등록</button>
         </form>
     </div>
 </div>
