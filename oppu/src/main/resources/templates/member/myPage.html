@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>마이페이지</title>
+    <div th:replace="/fragment/header :: head"></div>
+    <style>
+
+    </style>
 </head>
 <body>
-
+<div th:replace="/fragment/nav :: top-nav"></div>
+<div th:replace="/fragment/nav :: side-nav"></div>
+<div class="container">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>아이디</th>
+                <td>아이디가 나옴</td>
+            </tr>
+            <tr>
+                <th>닉네임</th>
+                <td>닉네임이 나옴</td>
+            </tr>
+            <tr>
+                <th>이메일</th>
+                <td>이메일이 나옴</td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <button href="#" class="btn btn-primary" type="button">수정</button>
+        <button href="#" class="btn btn-danger" type="button">탈퇴</button>
+    </div>
+</div>
+<div th:replace="/fragment/footer :: footer"></div>
 </body>
 </html>
