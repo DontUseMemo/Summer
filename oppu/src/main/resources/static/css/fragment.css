@@ -16,3 +16,11 @@ body, html {
 .w3-bar .w3-button {
     padding: 16px;
 }
+
+#mySidebar {
+    display: block;
+}
+
+.w3-sidebar {
+    margin-top: 0;
+}
