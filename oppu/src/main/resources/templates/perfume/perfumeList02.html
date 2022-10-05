@@ -24,17 +24,26 @@
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto">
 <!--            여기서 foreach문 적용하면 됨-->
-            <div class="flex flex-wrap -m-4 pl-20 pr-20">
-                <div class="lg:w-1/4 md:w-1/2 p-10 w-full">
-                    <a class="block relative h-48 rounded overflow-hidden">
-                        <img alt="이미지" class="object-cover object-center w-full h-full block p-5" src="https://dummyimage.com/420x260">
-                    </a>
-                    <div class="mt-4">
-                        <h3 name="brand" class="text-gray-500 text-xs tracking-widest title-font mb-1 text-center">브랜드가 출력될 예정</h3>
-                        <h2 name="perfume_name" class="text-gray-900 title-font text-lg font-medium text-center">향수 이름이 출력될 예정</h2>
+            <span th:each="perfume: ${perfumeList}">
+                <div class="flex flex-wrap -m-4 pl-20 pr-20">
+
+                    <div class="lg:w-1/4 md:w-1/2 p-10 w-full">
+                        <a class="block relative h-48 rounded overflow-hidden">
+                            <img alt="이미지" class="object-cover object-center w-full h-full block p-5" src="https://dummyimage.com/420x260">
+                        </a>
+                        <div class="mt-4">
+                                <h3 name="brand" class="text-gray-500 text-xs tracking-widest title-font mb-1 text-center">
+                                    <div th:text="${perfume.brand}"></div>
+                                </h3>
+                                <h2 name="perfume_name" class="text-gray-900 title-font text-lg font-medium text-center">
+                                    <div>
+                                       <a th:href="|/perfume/perfumeInfo/${perfume.perfumeName}|" th:text="${perfume.perfumeName}"></a>
+                                    </div>
+                                </h2>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </span>
         </div>
     </section>
 <th:block th:replace="/fragment/footer02 :: footer"></th:block>

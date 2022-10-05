@@ -13,15 +13,19 @@
 <!--            향수 이미지-->
             <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://dummyimage.com/400x400">
             <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-<!--                브랜드 이름-->
-                <h2 class="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
-<!--                향수 이름-->
-                <h3 class="text-gray-900 text-3xl title-font font-medium mb-1">The Catcher in the Rye</h3>
-<!--                조향사-->
-                <h1 class="text-gray-900 text-md title-font font-medium mb-1">The Catcher in the Rye</h1>
-<!--                탑노트-->
-                <h1 class="text-gray-900 text-md title-font font-medium mb-1">The Catcher in the Rye</h1>
+
+<!--                    브랜드 이름-->
+                    <h2 class="text-sm title-font text-gray-500 tracking-widest" th:text="${perfumeInfo.perfumeName}"></h2>
+<!--                    향수 이름-->
+                    <h3 class="text-gray-900 text-3xl title-font font-medium mb-1"  th:text="${perfumeInfo.brand}">The Catcher in the Rye</h3>
+<!--                    조향사-->
+                    <h1 class="text-gray-900 text-md title-font font-medium mb-1" >The Catcher in the Rye</h1>
+<!--                    탑노트-->
+                    <h1 class="text-gray-900 text-md title-font font-medium mb-1">The Catcher in the Rye</h1>
+                </tr>
+
                 <div class="flex mb-4">
+
           <span class="flex items-center">
             <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>

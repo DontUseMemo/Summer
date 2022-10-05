@@ -5,11 +5,11 @@ import com.example.oppu.Perfume.Repository.PerfumeInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequestMapping("/perfume")
 @Controller
 public class PerfumeController {
 
@@ -24,33 +24,31 @@ public class PerfumeController {
     }
 
 
-    @GetMapping("/perfume/perfumeList")
+    @GetMapping("/perfumeList")
     public String perfumeList(Model model) {
 
         List<PerfumeInfo> perfumeList =perfumeInfoRepo.findAll();
-
-        System.out.println("========================================");
-        System.out.println(perfumeList);
-        System.out.println(perfumeList);
-        System.out.println("========================================");
         model.addAttribute("perfumeList", perfumeList);
 
-        return "perfume/perfumeList";
+        return "/perfume/perfumeList";
     }
 
-//    @PostMapping ("/perfume/perfumeList")
-//        public String perfumeList(Model model){
-//        List<PerfumeInfo> perfumeList =
-//                perfumeService.getPerfumeList();
-//        System.out.println("========================================");
-//        System.out.println(perfumeList);
-//        System.out.println("========================================");
-//        model.addAttribute("perfumeList", perfumeList );
-//
-//
-//        return "redirect:/perfume/perfumeList";
-//
 
-//}
+    @GetMapping("/perfumeInfo")
+    public String perfumeInfo(){
+//        List<PerfumeInfo> perfumeInfo =perfumeInfoRepo.findAll();
+//        model.addAttribute("perfumeInfo", perfumeInfo);
+        return "/perfume/perfumeInfo";
+
+    }
+
+    @GetMapping("/perfumeInfo/{perfumeName}")
+    public String perfumeInfo(@PathVariable("perfumeName") String name , Model model){
+        PerfumeInfo perfumeInfo = perfumeService.getPerfumeInfo(name);
+        model.addAttribute("perfumeInfo", perfumeInfo);
+        return "/perfume/perfumeInfo";
+
+    }
+
 
 }
