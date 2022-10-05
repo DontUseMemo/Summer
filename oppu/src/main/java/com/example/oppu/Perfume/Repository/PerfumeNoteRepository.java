@@ -19,8 +19,4 @@ public interface PerfumeNoteRepository  extends JpaRepository<PerfumeNote,String
     List<PerfumeNote> findBase(String name);
 
 
-
-
-
-
 }
