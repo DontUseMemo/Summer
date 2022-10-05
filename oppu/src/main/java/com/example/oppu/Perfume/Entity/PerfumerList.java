@@ -16,7 +16,7 @@ public class PerfumerList {
 
     @Id
     @Column(name = "PERFUME_NAME", length =70)
-    private String perfumename;
+    private String perfumeName;
 
     @Column(name = "PERFUMER" , length = 40)
     private String perfumer;

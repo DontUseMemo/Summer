@@ -1,7 +1,9 @@
 package com.example.oppu.Perfume;
 
 import com.example.oppu.Perfume.Entity.PerfumeInfo;
+import com.example.oppu.Perfume.Entity.PerfumerList;
 import com.example.oppu.Perfume.Repository.PerfumeInfoRepository;
+import com.example.oppu.Perfume.Repository.PerfumerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,11 +18,13 @@ public class PerfumeController {
     //    private final PerfumeRepository perfumeRepo;
     private final PerfumeService perfumeService;
     private final PerfumeInfoRepository perfumeInfoRepo;
+    private final PerfumerRepository perfumerRepo;
 
     @Autowired
-    public PerfumeController(PerfumeService perfumeService, PerfumeInfoRepository perfumeInfoRepo) {
+    public PerfumeController(PerfumeService perfumeService, PerfumeInfoRepository perfumeInfoRepo, PerfumerRepository perfumerRepo) {
         this.perfumeService = perfumeService;
         this.perfumeInfoRepo = perfumeInfoRepo;
+        this.perfumerRepo = perfumerRepo;
     }
 
 
@@ -45,7 +49,13 @@ public class PerfumeController {
     @GetMapping("/perfumeInfo/{perfumeName}")
     public String perfumeInfo(@PathVariable("perfumeName") String name , Model model){
         PerfumeInfo perfumeInfo = perfumeService.getPerfumeInfo(name);
+        PerfumerList perfumerList = perfumerRepo.getReferenceById(name);
+        System.out.println("============================");
+        System.out.println(perfumerList);
+        System.out.println("============================");
+
         model.addAttribute("perfumeInfo", perfumeInfo);
+        model.addAttribute("perfumerList", perfumerList);
         return "/perfume/perfumeInfo";
 
     }
