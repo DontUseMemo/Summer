@@ -18,6 +18,7 @@ public class ReplyController {
     private final BoardService boardService;
     private final ReplyService replyService;
 
+    //댓글 생성하기
     @PostMapping("/create/{id}")
     public String createAnswer(@PathVariable("id") Long id, @RequestParam String reply) {
         Board board = this.boardService.getBoardRequest(id);
