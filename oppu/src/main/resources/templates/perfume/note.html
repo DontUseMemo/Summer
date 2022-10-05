@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <script src="https://cdn.tailwindcss.com"></script>
     <meta charset="UTF-8">
     <title>Title</title>
-    <th:block th:replace="/fragment/header02 :: header"></th:block>
+    <div th:replace="/fragment/header :: head"></div>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/css/styles.css" rel="stylesheet" />
+    <style>
+        .container.px-4 {
+            padding-top: 130px;
+            padding-bottom: 100px;
+        }
+    </style>
 </head>
 <body>
-    <section class="text-gray-600 body-font">
-        <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
-<!--            노트 이미지-->
-            <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600">
-            <div class="text-center lg:w-2/3 w-full">
-<!--                노트 그룹-->
-                <h1 class="title-font sm:text-xl text-xl mb-4 font-medium text-gray-900">Microdosing synth tattooed vexillologist</h1>
-<!--                노트 이름-->
-                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Microdosing synth tattooed vexillologist</h1>
-<!--                노트 설명-->
-                <p class="mb-8 leading-relaxed">Meggings kinfolk echo park stumptown DIY, kale chips beard jianbing tousled. Chambray dreamcatcher trust fund, kitsch vice godard disrupt ramps hexagon mustache umami snackwave tilde chillwave ugh. Pour-over meditation PBR&amp;B pickled ennui celiac mlkshk freegan photo booth af fingerstache pitchfork.</p>
-            </div>
+<div th:replace="/fragment/nav :: top-nav"></div>
+<div th:replace="/fragment/nav :: side-nav"></div>
+
+<div class="container px-4 px-lg-5">
+    <!-- Heading Row-->
+    <div class="row gx-5 gx-lg-5 align-items-center my-5">
+        <div class="col-md-3">
+            <img class="img-fluid rounded mb-4 mb-lg-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." />
         </div>
-    </section>
-<th:block th:replace="/fragment/footer02 :: footer"></th:block>
+        <div class="col-md-9">
+            <h5 class="my-3">노트 그룹</h5>
+            <h1 class="font-weight-light mb-5">노트 이름</h1>
+            <p>노트 설명 This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
+        </div>
+    </div>
+</div>
+
+<div th:replace="/fragment/footer :: footer"></div>
 </body>
 </html>
