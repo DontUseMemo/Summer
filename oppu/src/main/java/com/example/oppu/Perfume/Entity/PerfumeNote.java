@@ -14,6 +14,9 @@ import javax.persistence.Table;
 @Entity()
 public class PerfumeNote {
     @Id
+    @Column(name = "SEQ", length = 22)
+    private Integer seq;
+
     @Column(name = "PERFUME_NAME", length = 70,nullable = false)
     private String perfumeName;
 
