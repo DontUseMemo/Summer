@@ -8,11 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
-public class MagazineServiceImpl implements MagazineService{
+public class MagazineServiceImpl implements MagazineService {
 
     private final MagazineRepository magazineRepository;
 
@@ -29,10 +28,10 @@ public class MagazineServiceImpl implements MagazineService{
     }
 
     //매거진목록 메소드
-//    @Override
-//    public List<Magazine> getMagazineList(Magazine magazine) {
-//        return (List<Magazine>) magazineRepository.findAll();
-//    }
+    //    @Override
+    //    public List<Magazine> getMagazineList(Magazine magazine) {
+    //        return (List<Magazine>) magazineRepository.findAll();
+    //    }
 
     //메거진상세 메소드
     @Override
@@ -51,9 +50,17 @@ public class MagazineServiceImpl implements MagazineService{
     }
 
     //매거진삭제 메소드
+    //    @Override
+    //    public void deleteMagazine(Magazine magazine) {
+    //        magazineRepository.deleteById(magazine.getId());
+    //    }
     @Override
     public void deleteMagazine(Magazine magazine) {
-        magazineRepository.deleteById(magazine.getId());
+        System.out.println(magazine);
+        Magazine findMagazine = magazineRepository.findById(magazine.getId()).get();
+        findMagazine.setDeleteYN("Y");
+        magazineRepository.save(findMagazine);
+
     }
 
     //매거진검색 메소드
@@ -71,12 +78,17 @@ public class MagazineServiceImpl implements MagazineService{
         return magazineRepository.findAll(pageable);
     }
 
-//    @Override
-//    public Magazine deleteMagazineYN(Magazine magazine) {
-//        Magazine deleteYN = magazineRepository.findAll(magazine.getDeleteYN()).get();
-//
-//        Magazine yn = magazine.getDeleteYN();
-//
-//        return magazineRepository.;
-//    }
+    //    @Override
+    //    public Page<Magazine> getMagazineList(int page, Magazine magazine) {
+    //        List<Sort.Order> sorts = new ArrayList<>();
+    //        Pageable pageable = null;
+    //        if(magazine.getDeleteYN().equals("N")) {
+    //            sorts.add(Sort.Order.desc("createDate"));
+    //            pageable = PageRequest.of(page, 2, Sort.by(sorts));
+    //        }
+    //
+    //
+    //        return magazineRepository.findAll(pageable);
+    //    }
+
 }
