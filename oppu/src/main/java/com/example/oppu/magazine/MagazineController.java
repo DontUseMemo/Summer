@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path="/magazine")
 public class MagazineController {
@@ -58,6 +60,7 @@ public class MagazineController {
     //매거진 삭제
     @GetMapping("/deleteMagazine")
     public String deleteMagazine(Magazine magazine) {
+        System.out.println("11" + magazine);
         magazineService.deleteMagazine(magazine);
         return "redirect:/magazine/magazineList";
     }

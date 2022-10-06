@@ -11,18 +11,20 @@ public interface MagazineRepository extends JpaRepository<Magazine, Long> {
     @Query(value = "SELECT M FROM Magazine M WHERE M.title = :title or M.writer = :writer or M.content = :content")
     Magazine findMagazineByTitleOrWriterOrContent(String title, String writer, String content);
 
-    //deleteYN의 value N일 경우만 데이터 가져오기
-//    @Query(value = "SELECT M.deleteYN FROM Magazine M WHERE M.deleteYN = 'N'")
+    //yn값 설정 (중..)
+//    @Query(value = "SELECT M.deleteYN FROM Magazine M WHERE M.deleteYN = 'N' ")
 //    Magazine findMagazineByDeleteYnWhereN(String deleteYN);
 
+        //    @Query(value = "SELECT M.deleteYN FROM Magazine M WHERE M.deleteYN = 'N'")
+//    Magazine findMagazineByDeleteYnWhereN(String deleteYN);
 
-    //특정 검색조건
+//n값일 경우에만 목록에 넣기 > 페이징부분 건들여야함 / y값으로 변했을 때 뺴기 >
+   //특정 검색조건
 //    @Query(value = "select m from Member m where m.email like concat('%',:email,'%')")
 //    List<Member> findMemberByEmail(String email);
 
     //페이징
-//    @Query(value = "SELECT M FROM Magazine M WHERE M.deleteYN = 'N'")
-//    @Query(value = "SELECT M FROM Magazine M WHERE M.deleteYN IS NOT NULL")
+//    @Query(value = "SELECT M.deleteYN FROM Magazine M WHERE M.deleteYN = 'N' ")
     Page<Magazine> findAll(Pageable pageable);
 
 }

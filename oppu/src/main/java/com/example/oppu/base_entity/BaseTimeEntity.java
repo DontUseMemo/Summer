@@ -7,9 +7,10 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.EntityListeners;
+import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Setter
 @Getter
@@ -27,8 +28,6 @@ public abstract class BaseTimeEntity {
     private LocalDateTime updateDate;
 
     //데이터 삭제 상태
-    @Column(columnDefinition = "CHAR(3) default'N'")
-    //    @CreatedDate이랑  LocalDateTime이랑 같이 사용해도 되는지 확인
+    @Column(columnDefinition = "CHAR(1) default 'N'")
     private String deleteYN;
-
 }
