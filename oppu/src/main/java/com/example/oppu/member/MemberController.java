@@ -26,6 +26,7 @@ public class MemberController {
     @PostMapping("/signUp")
     public String signup(@Valid UserInsertForm userInsertForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
+            System.out.println("실패했음");
             return "/member/signUp";
         }
         if (!userInsertForm.getPassword1().equals(userInsertForm.getPassword2())) {
@@ -45,11 +46,13 @@ public class MemberController {
         return "redirect:/";
     }
 
+    // 로그인
     @GetMapping("/login")
     public String login() {
         return "/member/login";
     }
 
+    // 마이페이지
     @GetMapping("/myPage")
     public String myPage() {
         return "/member/myPage";
