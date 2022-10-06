@@ -42,15 +42,15 @@
     </div>
 </form>
 
-<div class="row row-cols-3 row-cols-md-4 row-cols-lg-5 g-1 g-lg-4">
+<div class="row row-cols-3 row-cols-md-4 row-cols-lg-5 g-1 g-lg-5">
     <div class="col" th:each="perfume : ${perfumeList}">
         <div class="card h-100">
             <img th:src="|/perfume_img/${perfume.img}|" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">
+                <h5 class="card-title text-center">
                     <a th:href="|/perfume/perfumeInfo/${perfume.perfumeName}|" th:text="${perfume.perfumeName}"></a>
                 </h5>
-                <p class="card-text" th:text="${perfume.brand}"></p>
+                <p class="card-text text-center" th:text="${perfume.brand}"></p>
             </div>
         </div>
     </div>
