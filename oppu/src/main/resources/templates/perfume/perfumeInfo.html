@@ -14,9 +14,6 @@
                 padding-top: 50px;
                 padding-bottom: 100px;
             }
-
-
-
         </style>
     </head>
     <body>
@@ -33,23 +30,12 @@
                     </div>
                     <div class="col-md-8">
 <!--                        브랜드-->
-                        <div class="small mb-3" th:text="${perfumeInfo.brand}">브랜드</div>
+                        <div class="fs-4 mb-3" th:text="${perfumeInfo.brand}">브랜드</div>
 <!--                        향수 이름-->
-                        <h1 class="display-6 fw-bolder my-5" th:text="${perfumeInfo.perfumeName}">향수 이름</h1>
-<!--&lt;!&ndash;                        조향사?&ndash;&gt;-->
-<!--                        <div class="fs-5 mb-5">-->
-<!--                            <span>조향사 이름?</span>-->
-<!--                        </div>-->
+                        <h1 class="display-6 fw-bolder my-4" th:text="${perfumeInfo.perfumeName}">향수 이름</h1>
 <!--                        Gender-->
-                        <div class="small mb-3" th:text="${perfumeInfo.gender}">Gender</div>
+                        <div class="fs-4 mb-3" th:text="${perfumeInfo.gender}">Gender</div>
                         <p class="lead" th:text="${perfumeInfo.article}">향수 설명</p>
-<!--                        <div class="d-flex">-->
-<!--                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />-->
-<!--                            <button class="btn btn-outline-dark flex-shrink-0" type="button">-->
-<!--                                <i class="bi-cart-fill me-1"></i>-->
-<!--                                Add to cart-->
-<!--                            </button>-->
-<!--                        </div>-->
                     </div>
                 </div>
 
@@ -60,11 +46,6 @@
                     <div class="col-lg-3 col-5 mb-5 mb-lg-0" th:each="perfumer :${perfumerList}">
                         <h2 class="h4 text-center" th:text="${perfumer.perfumer}">조향사 이름</h2>
                     </div>
-
-
-<!--                    <div class="col-lg-3 col-5 mb-5 mb-lg-0">-->
-<!--                        <h2 class="h4 text-center">조향사 이름</h2>-->
-<!--                    </div>-->
                 </div>
 
                 <h2 class="mt-5 fw-bold">노트</h2>
@@ -89,7 +70,8 @@
                         <a href="#" class="m-2" th:each="base : ${perfumeBase}">
                             <span th:text="${base.note}">베르가못</span>
                         </a>
-                    </div>z
+                    </div>
+                </div>
 <!--                그래프??ㅠㅠ?-->
                 <hr>
                 <div>
@@ -98,10 +80,5 @@
             </div>
         </section>
     <div th:replace="/fragment/footer :: footer"></div>
-
-<!--    &lt;!&ndash; Bootstrap core JS&ndash;&gt;-->
-<!--        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>-->
-<!--        &lt;!&ndash; Core theme JS&ndash;&gt;-->
-<!--        <script src="js/scripts.js"></script>-->
     </body>
 </html>
