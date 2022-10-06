@@ -27,12 +27,6 @@ public class MagazineServiceImpl implements MagazineService {
         magazineRepository.save(magazine);
     }
 
-    //매거진목록 메소드
-    //    @Override
-    //    public List<Magazine> getMagazineList(Magazine magazine) {
-    //        return (List<Magazine>) magazineRepository.findAll();
-    //    }
-
     //메거진상세 메소드
     @Override
     public Magazine getMagazine(Magazine magazine) {
@@ -50,10 +44,6 @@ public class MagazineServiceImpl implements MagazineService {
     }
 
     //매거진삭제 메소드
-    //    @Override
-    //    public void deleteMagazine(Magazine magazine) {
-    //        magazineRepository.deleteById(magazine.getId());
-    //    }
     @Override
     public void deleteMagazine(Magazine magazine) {
         System.out.println(magazine);
@@ -77,18 +67,5 @@ public class MagazineServiceImpl implements MagazineService {
         Pageable pageable = PageRequest.of(page, 2, Sort.by(sorts));
         return magazineRepository.findAll(pageable);
     }
-
-    //    @Override
-    //    public Page<Magazine> getMagazineList(int page, Magazine magazine) {
-    //        List<Sort.Order> sorts = new ArrayList<>();
-    //        Pageable pageable = null;
-    //        if(magazine.getDeleteYN().equals("N")) {
-    //            sorts.add(Sort.Order.desc("createDate"));
-    //            pageable = PageRequest.of(page, 2, Sort.by(sorts));
-    //        }
-    //
-    //
-    //        return magazineRepository.findAll(pageable);
-    //    }
 
 }
