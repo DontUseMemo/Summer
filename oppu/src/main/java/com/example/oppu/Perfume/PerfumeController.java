@@ -69,5 +69,10 @@ public class PerfumeController {
 
     }
 
+    @GetMapping("/note")
+    public String note(){
+        return "/perfume/note";
+    }
+
 
 }
