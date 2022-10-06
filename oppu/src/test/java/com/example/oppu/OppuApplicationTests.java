@@ -1,7 +1,9 @@
 package com.example.oppu;
 
+import com.example.oppu.Perfume.Entity.AllNote;
 import com.example.oppu.Perfume.Entity.PerfumerList;
 import com.example.oppu.Perfume.PerfumeService;
+import com.example.oppu.Perfume.Repository.AllNoteRepository;
 import com.example.oppu.Perfume.Repository.PerfumeInfoRepository;
 
 import com.example.oppu.Perfume.Repository.PerfumerRepository;
@@ -19,6 +21,9 @@ class OppuApplicationTests {
     private PerfumeService perfumeService;
     private PerfumerRepository perfumerRepository;
 
+    @Autowired
+    private AllNoteRepository allNoteRepository;
+
     @Test
     public void test(){
         List<PerfumerList> a  = perfumeService.getPerfumerList("Acqua di Gio");
@@ -30,6 +35,15 @@ class OppuApplicationTests {
     public void testA(){
         List<PerfumerList> a = perfumerRepository.findAll();
         System.out.println(a);
+    }
+
+    @Test
+    public void testB(){
+        List<AllNote> a = allNoteRepository.findByNoteName("Acai Berry");
+        System.out.println("=====================");
+        System.out.println(a.toString());
+        System.out.println("=====================");
+
     }
 
     @Test

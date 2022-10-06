@@ -72,7 +72,7 @@
                 <div class="mb-5">
                     <h3 class="text-center mt-5">top note</h3>
                     <div class="d-flex justify-content-center" >
-                        <a href="#" class="m-2" th:each="top : ${perfumeTop}">
+                        <a th:href="|/perfume/note/${top.note}|" class="m-2" th:each="top : ${perfumeTop}">
                             <span th:text="${top.note}">베르가못</span>
                         </a>
                     </div>
