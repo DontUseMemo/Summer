@@ -25,6 +25,5 @@ public interface MagazineService {
 
     //매거진페이징 메소드
     Page<Magazine> getMagazineList(int page);
-
-//    Magazine deleteMagazineYN(Magazine magazine);
+//    Page<Magazine> getMagazineList(int page, Magazine magazine);
 }
