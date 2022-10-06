@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:replace="/fragment/header :: head"></div>
+    <style>
+        .container {
+            padding-top: 150px;
+            padding-bottom: 100px;
+        }
+        .container h1 {
+            font-weight: bold;
+            margin-bottom: 50px;
+            color: #525252;
+        }
+        .container {
+            width: 450px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="/fragment/nav :: top-nav"></div>
+<div th:replace="/fragment/nav :: side-nav"></div>
+<div class="container">
+    <h1>내정보 수정</h1>
+    <form>
+        <table class="table table-borderless">
+            <tbody>
+                <tr>
+                    <th>아이디:</th>
+                    <td>아이디 표시</td>
+                </tr>
+                <tr>
+                    <th>닉네임:</th>
+                    <td>닉네임 표시</td>
+                </tr>
+                <tr>
+                    <th>이메일:</th>
+                    <td>이메일 표시</td>
+                </tr>
+                <tr>
+                    <th>비밀번호:</th>
+                    <td>
+                        <input type="text" class="form-control" placeholder="비밀번호를 입력해주세요">
+                    </td>
+                </tr>
+                <tr>
+                    <th>비밀번호 확인:</th>
+                    <td>
+                        <input type="text" class="form-control" placeholder="비밀번호를 입력해주세요">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">저장</button>
+    </form>
+</div>
+<div th:replace="/fragment/footer :: footer"></div>
+</body>
+</html>
