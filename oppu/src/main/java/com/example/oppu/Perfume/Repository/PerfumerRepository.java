@@ -8,5 +8,7 @@ import java.util.List;
 
 public interface PerfumerRepository extends JpaRepository<PerfumerList,String> {
 
-PerfumerList findByPerfumeName(String name);
+List<PerfumerList> findByPerfumeName(String name);
+
+
 }

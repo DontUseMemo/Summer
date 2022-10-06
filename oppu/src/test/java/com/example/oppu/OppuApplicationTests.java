@@ -21,9 +21,15 @@ class OppuApplicationTests {
 
     @Test
     public void test(){
-        PerfumerList a  = perfumerRepository.findByPerfumeName("Light Blue");
+        List<PerfumerList> a  = perfumeService.getPerfumerList("Acqua di Gio");
         System.out.println(a);
 
+    }
+
+    @Test
+    public void testA(){
+        List<PerfumerList> a = perfumerRepository.findAll();
+        System.out.println(a);
     }
 
     @Test
