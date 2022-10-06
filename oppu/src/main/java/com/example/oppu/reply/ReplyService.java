@@ -4,7 +4,6 @@ import com.example.oppu.board.Board;
 import org.springframework.stereotype.Service;
 
 
-@Service
 public interface ReplyService {
 
     //댓글 생성하기

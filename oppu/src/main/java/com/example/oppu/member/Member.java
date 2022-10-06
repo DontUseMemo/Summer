@@ -19,19 +19,26 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    //회원가입 id
     private String userId;
 
+    //회원 닉네임
     @Column(unique = true)
     private String nickname;
 
+    //회원 비밀번호
     private String password;
 
+    //회원 email
     @Column(unique = true)
     private String email;
 
+    //회원 경고 횟수
     private int accrueReportNumber;
 
+    //회원 최근 로그인
     private LocalDateTime recentLoginDate;
 
+    //계정 정지 상태 YN (BaseTimeEntity로 옮길 예정.)
     private String stopYN;
 }
