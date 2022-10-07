@@ -18,16 +18,16 @@ public interface MagazineService {
     //매거진삭제 메소드
     void deleteMagazine(Magazine magazine);
 
-    //매거진검색 메소드
-    Magazine getMagazineWhereTitleOrWriterOrContent(String title, String writer, String content);
+    //매거진페이징 검색 메소드
+    Page<Magazine> findAll(Pageable pageable);
 
-    //매거진페이징 메소드
-    Page<Magazine> getMagazineList(int page);
+    //매거진페이징 제목 검색 메소드
+    Page<Magazine> findByTitle(Pageable pageable, String keyword);
 
-//    public Page<Magazine> findByTitle(Pageable pageable, String keyword);
-//
-//    public Page<Magazine> findByContent(Pageable pageable, String keyword);
-//
-//    public Page<Magazine> findByWriter(Pageable pageable, String keyword);
+    //매거진페이징 내용 검색 메소드
+    Page<Magazine> findByContent(Pageable pageable, String keyword);
+
+    //매거진페이징 작성자 검색 메소드
+    Page<Magazine> findByWriter(Pageable pageable, String keyword);
 
 }
