@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface AllNoteRepository extends JpaRepository<AllNote,String> {
 
-    List<AllNote> findByNoteName(String name);
+    AllNote findByNoteName(String name);
 
 }

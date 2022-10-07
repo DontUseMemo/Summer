@@ -66,8 +66,13 @@ public class PerfumeService {
 
     }
 
-    public List<AllNote> getAllNote(String name){
+    public AllNote getAllNote(String name){
         return allNoteRepo.findByNoteName(name);
+    }
+
+    public void DeletePerfume(PerfumeInfo perfumeInfo){
+        perfumeInfoRepo.findById(perfumeInfo.getPerfumeName());
+
     }
 
 

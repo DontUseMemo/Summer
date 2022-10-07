@@ -43,14 +43,6 @@ public class PerfumeController {
     }
 
 
-//    @GetMapping("/perfumeInfo")
-//    public String perfumeInfo(){
-////        List<PerfumeInfo> perfumeInfo =perfumeInfoRepo.findAll();
-////        model.addAttribute("perfumeInfo", perfumeInfo);
-//        return "perfume/perfumeInfo";
-//
-//    }
-
     @GetMapping("/perfumeInfo/{perfumeName}")
     public String perfumeInfo(@PathVariable("perfumeName") String name , Model model){
         PerfumeInfo perfumeInfo = perfumeService.getPerfumeInfo(name);
@@ -76,9 +68,15 @@ public class PerfumeController {
 
     @GetMapping("/note/{note}")
     public String noteName(@PathVariable("note") String name, Model model){
-        List<AllNote> note =perfumeService.getAllNote(name);
-        model.addAttribute("Allnote", note);
+        AllNote note =perfumeService.getAllNote(name);
+        model.addAttribute("AllNote", note);
         return "/perfume/note";
+    }
+
+    @GetMapping("/deletePerfume")
+        public String deletePerfume(PerfumeInfo perfumeinfo){
+        perfumeService.DeletePerfume(perfumeinfo);
+        return "redirect:/perfume/perfumeList";
     }
 
 
