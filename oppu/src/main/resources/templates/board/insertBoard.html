@@ -16,7 +16,7 @@
 <div th:replace="/fragment/nav :: side-nav"></div>
 <div class="write-form">
     <div class="container" role="main">
-        <h2 th:if="${board == null ? '새 글쓰기' : '글 수정하기'}">커뮤니티 글쓰기</h2>
+        <h2 th:if="${board == null ? '새 글쓰기' : '글 수정하기'}" class="mb-5">커뮤니티 글쓰기</h2>
         <form th:action="@{/board/insert}" name="form" id="form" role="form" method="post">
 
             <div class="mb-3">

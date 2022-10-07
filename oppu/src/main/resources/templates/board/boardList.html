@@ -27,6 +27,14 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+        .search-bar {
+            width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 15px;
+        }
+
         @media screen and (max-width: 1210px) {
             .table-responsive {
                 margin-left: 10px;
@@ -78,6 +86,12 @@
         </tbody>
     </table>
     <a th:href="@{/board/insert}" class="btn btn-light">글쓰기</a>
+    <form class="search-bar" action="" method="GET">
+        <div class="input-group mt-1">
+            <input name="query" type="text" class="form-control" placeholder="검색어 입력">
+            <button class="btn btn-primary" type="submit">검색</button>
+        </div>
+    </form>
     <!--페이징-->
     <nav>
         <ul th:if="${!paging.isEmpty()}" class="pagination justify-content-center">
