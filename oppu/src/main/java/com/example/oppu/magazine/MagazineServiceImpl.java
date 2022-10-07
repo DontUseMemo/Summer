@@ -64,8 +64,28 @@ public class MagazineServiceImpl implements MagazineService {
     public Page<Magazine> getMagazineList(int page) {
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("createDate"));
-        Pageable pageable = PageRequest.of(page, 2, Sort.by(sorts));
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
         return magazineRepository.findAll(pageable);
     }
 
+//    @Override
+//    public Page<Magazine> findAll(Pageable pageable){
+//        System.out.println("-----service findAll-----");
+//        return magazineRepository.findAll(pageable);
+//    }
+//    @Override
+//    public Page<Magazine> findByTitle(Pageable pageable, String keyword) {
+//        System.out.println("-----service findByTitle-----");
+//        return magazineRepository.findByTitleContaining(pageable, keyword);
+//    }
+//    @Override
+//    public Page<Magazine> findByContent(Pageable pageable, String keyword) {
+//        System.out.println("-----service findByContent-----");
+//        return magazineRepository.findByContentContaining(pageable, keyword);
+//    }
+//    @Override
+//    public Page<Magazine> findByWriter(Pageable pageable, String keyword) {
+//        System.out.println("-----service findByWriter-----");
+//        return magazineRepository.findByWriterContaining(pageable, keyword);
 }
+

@@ -20,5 +20,6 @@ public interface MagazineRepository extends JpaRepository<Magazine, Long> {
     @Query(value = "SELECT M FROM Magazine M WHERE M.deleteYN = 'N'")
     Page<Magazine> findAll(Pageable pageable);
 
-
+    //페이징 및 검색 구현중
+//    Page<Magazine> findByTitleContaining(Pageable pageable, String keyword);
 }

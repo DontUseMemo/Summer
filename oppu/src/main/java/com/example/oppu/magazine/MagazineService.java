@@ -1,6 +1,7 @@
 package com.example.oppu.magazine;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 
 public interface MagazineService {
@@ -22,4 +23,11 @@ public interface MagazineService {
 
     //매거진페이징 메소드
     Page<Magazine> getMagazineList(int page);
+
+//    public Page<Magazine> findByTitle(Pageable pageable, String keyword);
+//
+//    public Page<Magazine> findByContent(Pageable pageable, String keyword);
+//
+//    public Page<Magazine> findByWriter(Pageable pageable, String keyword);
+
 }

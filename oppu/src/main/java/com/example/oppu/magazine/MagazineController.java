@@ -26,6 +26,32 @@ public class MagazineController {
         return "/magazine/magazineList";
     }
 
+//    컨트롤러
+//    @GetMapping("/magazineList")
+//    public String getMagazineList(
+//            @RequestParam(value = "scategory",required = false, defaultValue = "")String scategory,
+//            @RequestParam(value = "keyword", required = false, defaultValue = "")String keyword,
+//            Pageable pageable, Model model) {
+//        System.out.println("-----GET getreviewList");
+//        System.out.println("scategory= " + scategory);
+//        System.out.println("keyword= " + keyword);
+//
+//        Page<Review> reviews = null;
+//        if(scategory.equals("title")){
+//            reviews = reviewService.findByTitle(pageable, keyword);
+//        }else if (scategory.equals("content")) {
+//            reviews = reviewService.findByContent(pageable, keyword);
+//        } else if (scategory.equals("writer")) {
+//            reviews = reviewService.findByWriter(pageable, keyword);
+//        }else{
+//            reviews = reviewService.findAll(pageable);
+//        }
+//        model.addAttribute("reviewList", reviews);
+//        model.addAttribute("scategory", scategory);
+//        model.addAttribute("keyword", keyword);
+//        return "/mypetboard/review/reviewList";
+//    }
+
     //매거진 작성
     @GetMapping("/insertMagazine")
     public String insertMagazine() {
