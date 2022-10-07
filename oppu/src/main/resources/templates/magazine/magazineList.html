@@ -87,6 +87,10 @@
     <a th:href="@{/magazine/insertMagazine}" class="btn btn-light">글쓰기</a>
     <form class="search-bar" action="" method="GET">
         <div class="input-group mt-1">
+            <select class="form-select">
+                <option name="title" value="title">제목</option>
+                <option name="writer" value="writer">작성자</option>
+            </select>
             <input name="query" type="text" class="form-control" placeholder="검색어 입력">
             <button class="btn btn-primary" type="submit">검색</button>
         </div>
