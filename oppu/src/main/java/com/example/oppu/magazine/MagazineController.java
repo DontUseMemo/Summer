@@ -1,6 +1,7 @@
 package com.example.oppu.magazine;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,9 +21,25 @@ public class MagazineController {
 
     //매거진 페이징
     @GetMapping("/magazineList")
-    public String getMagazineList(Model model, @RequestParam(value="page", defaultValue="0") int page) {
-        Page<Magazine> paging = this.magazineService.getMagazineList(page);
-        model.addAttribute("paging", paging);
+    public String getMagazineList(
+            @RequestParam(value="page", defaultValue = "0") int page,
+            @RequestParam(value = "scategory",required = false, defaultValue = "")String scategory,
+            @RequestParam(value = "keyword", required = false, defaultValue = "")String keyword,
+            Pageable pageable, Model model) {
+
+        Page<Magazine> magazine = null;
+        if(scategory.equals("title")){
+            magazine = magazineService.findByTitle(pageable, keyword);
+        }else if (scategory.equals("content")) {
+            magazine = magazineService.findByContent(pageable, keyword);
+        } else if (scategory.equals("writer")) {
+            magazine = magazineService.findByWriter(pageable, keyword);
+        }else{
+            magazine = magazineService.findAll(pageable);
+        }
+        model.addAttribute("magazine", magazine);
+        model.addAttribute("scategory", scategory);
+        model.addAttribute("keyword", keyword);
         return "/magazine/magazineList";
     }
 
@@ -66,10 +83,4 @@ public class MagazineController {
         return "/magazine/selectMagazine";
     }
 
-    //매거진 검색 데이터전달
-    @PostMapping("/selectMagazine")
-    public String resultMagazine(Magazine magazine, Model model) {
-        model.addAttribute("admin", magazineService.getMagazineWhereTitleOrWriterOrContent(magazine.getTitle(), magazine.getWriter(), magazine.getContent()));
-        return "/magazine/resultMagazine";
-    }
 }

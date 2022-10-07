@@ -12,16 +12,22 @@
             margin-right: 130px;
             margin-left: 130px;
         }
+
         h1 {
             font-weight: bold;
             margin-bottom: 50px;
             color: #525252;
         }
+
         th {
             text-align: center;
             color: #4d4d4d;
         }
-        th:nth-child(2) { width: 50%; }
+
+        th:nth-child(2) {
+            width: 50%;
+        }
+
         tr td:nth-child(2) a {
             color: #3a3a3a;
             text-decoration: none;
@@ -43,15 +49,33 @@
         }
 
         @media screen and (max-width: 780px) {
-            th:first-child { display: none }
-            th:nth-child(3) { display: none }
-            th:nth-child(4) { display: none }
+            th:first-child {
+                display: none
+            }
 
-            td:first-child { display: none }
-            td:nth-child(3) { display: none }
-            td:nth-child(4) { display: none }
+            th:nth-child(3) {
+                display: none
+            }
 
-            th:nth-child(2) { width: 80%; }
+            th:nth-child(4) {
+                display: none
+            }
+
+            td:first-child {
+                display: none
+            }
+
+            td:nth-child(3) {
+                display: none
+            }
+
+            td:nth-child(4) {
+                display: none
+            }
+
+            th:nth-child(2) {
+                width: 80%;
+            }
         }
     </style>
 </head>
@@ -60,59 +84,61 @@
 <div th:replace="/fragment/nav :: side-nav"></div>
 
 <div class="table-responsive">
-<h1>매거진</h1>
-<!-- The form -->
+    <h1>매거진</h1>
+    <!-- The form -->
     <table class="table table-hover">
         <thead class="table-light">
-            <tr>
-                <th>글번호</th>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>등록일</th>
-                <th>조회수</th>
-            </tr>
+        <tr>
+            <th>글번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>등록일</th>
+            <th>조회수</th>
+        </tr>
         </thead>
         <tbody>
-            <tr th:each="magazine : ${paging}">
-                <td th:text="${magazine.id}"></td>
-                <td>
-                    <a th:href="@{/magazine/getMagazine(id=${magazine.id})}" th:text="${magazine.title}"></a>
-                </td>
-                <td th:text="${magazine.writer}"></td>
-                <td th:text="${magazine.createDate}"></td>
-                <td class="px-4 py-3" th:text="${magazine.recommendNumber}"></td>
-            </tr>
+        <tr th:each="magazine : ${magazine}">
+            <td th:text="${magazine.id}"></td>
+            <td>
+                <a th:href="@{/magazine/getMagazine(id=${magazine.id})}" th:text="${magazine.title}"></a>
+            </td>
+            <td th:text="${magazine.writer}"></td>
+            <td th:text="${magazine.createDate}"></td>
+            <td class="px-4 py-3" th:text="${magazine.recommendNumber}"></td>
+        </tr>
         </tbody>
     </table>
     <a th:href="@{/magazine/insertMagazine}" class="btn btn-light">글쓰기</a>
-    <form class="search-bar" action="" method="GET">
+    <form class="search-bar" th:action="@{/magazine/magazineList}" method="GET">
+        <input type="hidden" name="page" value="0">
+        <input type="hidden" name="size" value="10">
         <div class="input-group mt-1">
-            <select class="form-select">
+            <select class="form-select" th:type="text" name="scategory" th:value="${scategory}">
                 <option name="title" value="title">제목</option>
+                <option name="content" value="content">내용</option>
                 <option name="writer" value="writer">작성자</option>
             </select>
-            <input name="query" type="text" class="form-control" placeholder="검색어 입력">
-            <button class="btn btn-primary" type="submit">검색</button>
+            <input id="keyword" name="keyword" type="text" class="form-control" placeholder="검색어 입력"
+                   th:value="${keyword}">
+            <button class="btn btn-primary" type="submit" id="s_button">검색</button>
         </div>
     </form>
     <!--페이징-->
     <nav>
-        <ul th:if="${!paging.isEmpty()}" class="pagination justify-content-center">
-            <li class="page-item" th:unless="${paging.number == 0}">
-                <a class="page-link" th:href="@{|?page=${(paging.number)-1}|}">이전</a>
+        <ul th:if="${!magazine.isEmpty()}" class="pagination justify-content-center">
+            <li class="page-item" th:unless="${magazine.number == 0}">
+                <a class="page-link" th:href="@{|?page=${(magazine.number)-1}|}">이전</a>
             </li>
-            <li class="page-item" th:each="page : ${#numbers.sequence(0, (paging.totalPages)-1)}"
-                th:if="${page >= (paging.number)-2 and page <= (paging.number)+2}">
+            <li class="page-item" th:each="page : ${#numbers.sequence(0, (magazine.totalPages)-1)}"
+                th:if="${page >= (magazine.number)-2 and page <= (magazine.number)+2}">
                 <a class="page-link" th:text="${page}" th:href="@{|?page=${page}|}">1</a>
             </li>
-            <li class="page-item" th:unless="${paging.number == (paging.totalPages)-1}">
-                <a class="page-link" th:href="@{|?page=${(paging.number)+1}|}">다음</a>
+            <li class="page-item" th:unless="${magazine.number == (magazine.totalPages)-1}">
+                <a class="page-link" th:href="@{|?page=${(magazine.number)+1}|}">다음</a>
             </li>
         </ul>
     </nav>
-
 </div>
-
 <div th:replace="/fragment/footer :: footer"></div>
 </body>
 </html>
