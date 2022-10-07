@@ -1,12 +1,10 @@
 package com.example.oppu.Perfume;
 
+import com.example.oppu.Perfume.Entity.AllNote;
 import com.example.oppu.Perfume.Entity.PerfumeInfo;
 import com.example.oppu.Perfume.Entity.PerfumeNote;
 import com.example.oppu.Perfume.Entity.PerfumerList;
 import com.example.oppu.Perfume.Repository.PerfumeInfoRepository;
-import com.example.oppu.Perfume.Repository.PerfumeNoteRepository;
-import com.example.oppu.Perfume.Repository.PerfumerRepository;
-import lombok.ToString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,15 +19,17 @@ public class PerfumeController {
     //    private final PerfumeRepository perfumeRepo;
     private final PerfumeService perfumeService;
     private final PerfumeInfoRepository perfumeInfoRepo;
-    private final PerfumerRepository perfumerRepo;
-    private final PerfumeNoteRepository perfumeNoteRepo;
+
+
+
+
+
+
 
     @Autowired
-    public PerfumeController(PerfumeService perfumeService, PerfumeInfoRepository perfumeInfoRepo, PerfumerRepository perfumerRepo, PerfumeNoteRepository perfumeNoteRepo) {
+    public PerfumeController(PerfumeService perfumeService, PerfumeInfoRepository perfumeInfoRepo) {
         this.perfumeService = perfumeService;
         this.perfumeInfoRepo = perfumeInfoRepo;
-        this.perfumerRepo = perfumerRepo;
-        this.perfumeNoteRepo = perfumeNoteRepo;
     }
 
 
@@ -42,14 +42,6 @@ public class PerfumeController {
         return "/perfume/perfumeList";
     }
 
-
-//    @GetMapping("/perfumeInfo")
-//    public String perfumeInfo(){
-////        List<PerfumeInfo> perfumeInfo =perfumeInfoRepo.findAll();
-////        model.addAttribute("perfumeInfo", perfumeInfo);
-//        return "perfume/perfumeInfo";
-//
-//    }
 
     @GetMapping("/perfumeInfo/{perfumeName}")
     public String perfumeInfo(@PathVariable("perfumeName") String name , Model model){
@@ -72,6 +64,19 @@ public class PerfumeController {
     @GetMapping("/note")
     public String note(){
         return "/perfume/note";
+    }
+
+    @GetMapping("/note/{note}")
+    public String noteName(@PathVariable("note") String name, Model model){
+        AllNote note =perfumeService.getAllNote(name);
+        model.addAttribute("AllNote", note);
+        return "/perfume/note";
+    }
+
+    @GetMapping("/deletePerfume")
+        public String deletePerfume(PerfumeInfo perfumeinfo){
+        perfumeService.DeletePerfume(perfumeinfo);
+        return "redirect:/perfume/perfumeList";
     }
 
 
