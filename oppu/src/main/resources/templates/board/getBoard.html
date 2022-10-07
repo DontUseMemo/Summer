@@ -31,7 +31,7 @@
 
         #board tbody tr:last-child { height: 200px; }
 
-        #reply tr th { width: 10%; }
+        #reply tr th { width: 23%; }
         #reply tr { height: 50px; }
     </style>
 </head>
@@ -70,11 +70,13 @@
             </tr>
         </tbody>
     </table>
+<!--    href="/board/boardList"-->
+<!--    href="/board/insert"-->
     <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
-        <button href="/board/boardList" type="button" class="btn btn-light">목록</button>
+        <button onclick="location.href='/board/boardList'" type="button" class="btn btn-light">목록</button>
         <button href="#" type="button" class="btn btn-light">수정</button>
         <button href="#" type="button" class="btn btn-light">삭제</button>
-        <button href="/board/insert" type="button" class="btn btn-light">글쓰기</button>
+        <button onclick="location.href='/board/insert'" type="button" class="btn btn-light">글쓰기</button>
     </div>
     <p th:text="|${#lists.size(board.replyList)}개의 답변이 있습니다.|"></p>
     <table id="reply" class="table border-top">
