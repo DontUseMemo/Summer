@@ -25,7 +25,7 @@
                 margin-right: 10px;
             }
 
-            .search-bar{
+            .search-bar {
                 width: auto;
             }
         }
@@ -35,10 +35,18 @@
 <div th:replace="/fragment/nav :: top-nav"></div>
 <div th:replace="/fragment/nav :: side-nav"></div>
 
-<form class="search-bar" action="https://search.naver.com/search.naver" method="GET">
-    <div class="input-group mt-5">
-        <input name="query" type="text" class="form-control" placeholder="검색어 입력">
-        <button class="btn btn-primary" type="submit">검색</button>
+<form class="search-bar" th:action="@{/perfume/perfumeLsit}" method="GET">
+    <input type="hidden" name="page" value="0">
+    <input type="hidden" name="size" value="10">
+    <div class="input-group mt-1">
+        <select class="form-select" th:type="text" name="category" th:value="${category}">
+            <option value="#" selected disabled hidden>==검색 키워드 선택==</option>
+            <option name="perfumeName" value="perfumeName">향수 이름</option>
+            <option name="brand" value="brand">브랜드</option>
+        </select>
+        <input id="keyword" name="keyword" type="text" class="form-control" placeholder="검색어 입력"
+               th:value="${keyword}">
+        <button class="btn btn-primary" type="submit" id="s_button">검색</button>
     </div>
 </form>
 
