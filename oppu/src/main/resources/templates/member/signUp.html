@@ -37,6 +37,13 @@
   <div class="input-form-backgroud row">
     <div class="input-form col-md-12 mx-auto">
       <h4 class="mb-3">회원가입</h4>
+<!--      <div th:if="${#fields.hasGlobalErrors()}">-->
+<!--        <p class="field-error"-->
+<!--           th:each="err : ${#fields.globalErrors()}"-->
+<!--           th:text="${err}">-->
+<!--          글로벌 오류 메시지-->
+<!--        </p>-->
+<!--      </div>-->
       <form class="validation-form" novalidate th:action="@{/member/signUp}" method="post">
         <div class="row">
           <div class="col-md-6 mb-3">
