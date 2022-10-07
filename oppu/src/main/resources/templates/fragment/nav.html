@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!--<style>-->
 <!--    #mySidebar {-->
 <!--        display: block;-->
@@ -18,10 +18,9 @@
             <a href="/perfume/perfumeList" class="w3-bar-item w3-button">PERFUME</a>
             <a href="/board/boardList" class="w3-bar-item w3-button">COMMUNITY</a>
             <a href="/magazine/magazineList" class="w3-bar-item w3-button">MAGAZINE</a>
-            <a href="/brand/list" class="w3-bar-item w3-button">BRAND</a>
             <a href="/member/myPage" class="w3-bar-item w3-button">MY PAGE</a>
-            <a href="/member/login" class="w3-bar-item w3-button">LOGIN</a>
-            <a href="#pricing" class="w3-bar-item w3-button">LOGOUT</a>
+            <a href="/member/login" sec:authorize="isAnonymous()" class="w3-bar-item w3-button">LOGIN</a>
+            <a href="#pricing" sec:authorize="isAuthenticated()" class="w3-bar-item w3-button">LOGOUT</a>
         </div>
         <!-- Hide right-floated links on small screens and replace them with a menu icon -->
         <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
@@ -38,10 +37,9 @@
     <a href="/perfume/perfumeList" onclick="w3_close()" class="w3-bar-item w3-button">PERFUME</a>
     <a href="/board/boardList" onclick="w3_close()" class="w3-bar-item w3-button">COMMUNITY</a>
     <a href="/magazine/magazineList" onclick="w3_close()" class="w3-bar-item w3-button">MAGAZINE</a>
-    <a href="/brand/list" onclick="w3_close()" class="w3-bar-item w3-button">BRAND</a>
     <a href="/member/myPage" onclick="w3_close()" class="w3-bar-item w3-button">MY PAGE</a>
-    <a href="/member/login" onclick="w3_close()" class="w3-bar-item w3-button">LOGIN</a>
-    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">LOGOUT</a>
+    <a href="/member/login" sec:authorize="isAnonymous()" onclick="w3_close()" class="w3-bar-item w3-button">LOGIN</a>
+    <a href="#contact" sec:authorize="isAuthenticated()" onclick="w3_close()" class="w3-bar-item w3-button">LOGOUT</a>
     <script src="/js/fragment.js"></script>
 </nav>
 
