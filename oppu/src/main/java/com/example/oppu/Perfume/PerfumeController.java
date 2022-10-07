@@ -42,7 +42,7 @@ public class PerfumeController {
     //향수 List, Page, 검색
     @GetMapping("/perfumeList")
     public String perfumeList(@RequestParam(value="page", defaultValue = "0") int page,
-                              @RequestParam(value = "scategory",required = false, defaultValue = "")String category,
+                              @RequestParam(value = "category",required = false, defaultValue = "")String category,
                               @RequestParam(value = "keyword", required = false, defaultValue = "")String keyword,
                               Pageable pageable, Model model) {
 
