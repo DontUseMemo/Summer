@@ -16,6 +16,18 @@ public class AdminController {
         this.adminService = adminService;
     }
 
+    //관리자페이지
+    @RequestMapping("")
+    public String adminMain() {
+        return "/admin/adminMain";
+    }
+
+    //전체 회원목록
+    @GetMapping("/allMember")
+    public String allMember() {
+        return "/admin/allMember";
+    }
+
     //관리자 목록
     @GetMapping("/getAdminList")
     public String getAdminList(Model model) {
