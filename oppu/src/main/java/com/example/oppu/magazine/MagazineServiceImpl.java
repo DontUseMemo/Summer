@@ -27,12 +27,6 @@ public class MagazineServiceImpl implements MagazineService {
         magazineRepository.save(magazine);
     }
 
-    //매거진목록 메소드
-    //    @Override
-    //    public List<Magazine> getMagazineList(Magazine magazine) {
-    //        return (List<Magazine>) magazineRepository.findAll();
-    //    }
-
     //메거진상세 메소드
     @Override
     public Magazine getMagazine(Magazine magazine) {
@@ -50,10 +44,6 @@ public class MagazineServiceImpl implements MagazineService {
     }
 
     //매거진삭제 메소드
-    //    @Override
-    //    public void deleteMagazine(Magazine magazine) {
-    //        magazineRepository.deleteById(magazine.getId());
-    //    }
     @Override
     public void deleteMagazine(Magazine magazine) {
         System.out.println(magazine);
@@ -63,32 +53,32 @@ public class MagazineServiceImpl implements MagazineService {
 
     }
 
-    //매거진검색 메소드
+    //매거진페이징 검색 메소드
     @Override
-    public Magazine getMagazineWhereTitleOrWriterOrContent(String title, String writer, String content) {
-        return magazineRepository.findMagazineByTitleOrWriterOrContent(title, writer, content);
-    }
-
-    //매거진페이징 메소드
-    @Override
-    public Page<Magazine> getMagazineList(int page) {
-        List<Sort.Order> sorts = new ArrayList<>();
-        sorts.add(Sort.Order.desc("createDate"));
-        Pageable pageable = PageRequest.of(page, 2, Sort.by(sorts));
+    public Page<Magazine> findAll(Pageable pageable) {
+        System.out.println("-----service findAll-----");
         return magazineRepository.findAll(pageable);
     }
 
-    //    @Override
-    //    public Page<Magazine> getMagazineList(int page, Magazine magazine) {
-    //        List<Sort.Order> sorts = new ArrayList<>();
-    //        Pageable pageable = null;
-    //        if(magazine.getDeleteYN().equals("N")) {
-    //            sorts.add(Sort.Order.desc("createDate"));
-    //            pageable = PageRequest.of(page, 2, Sort.by(sorts));
-    //        }
-    //
-    //
-    //        return magazineRepository.findAll(pageable);
-    //    }
+    //매거진페이징 제목 검색 메소드
+    @Override
+    public Page<Magazine> findByTitle(Pageable pageable, String keyword) {
+        System.out.println("-----service findByTitle-----");
+        return magazineRepository.findByTitleContaining(pageable, keyword);
+    }
 
+    //매거진페이징 내용 검색 메소드
+    @Override
+    public Page<Magazine> findByContent(Pageable pageable, String keyword) {
+        System.out.println("-----service findByContent-----");
+        return magazineRepository.findByContentContaining(pageable, keyword);
+    }
+
+    //매거진페이징 작성자 검색 메소드
+    @Override
+    public Page<Magazine> findByWriter(Pageable pageable, String keyword) {
+        System.out.println("-----service findByWriter-----");
+        return magazineRepository.findByWriterContaining(pageable, keyword);
+    }
 }
+
