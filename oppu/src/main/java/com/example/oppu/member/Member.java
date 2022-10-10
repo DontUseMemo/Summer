@@ -20,7 +20,7 @@ public class Member {
     private Long id;
 
     //회원가입 id
-    private String userId;
+    private String username;
 
     //회원 닉네임
     @Column(unique = true)

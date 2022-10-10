@@ -1,5 +1,6 @@
 package com.example.oppu.board;
 
+import com.example.oppu.member.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public interface BoardService {
 
     Board getBoardRequest(Long id);
 
-    void insertBoard(String category, String title, String nickname, String content);
+    void insertBoard(String category, String title, Member member, String content);
 
 //    public List<Board> searchEmail(String boardSearch);
 

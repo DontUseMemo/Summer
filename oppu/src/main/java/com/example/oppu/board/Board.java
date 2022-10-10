@@ -1,5 +1,6 @@
 package com.example.oppu.board;
 
+import com.example.oppu.member.Member;
 import com.example.oppu.reply.Reply;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,17 +23,18 @@ public class Board {
     private Long id;
 
     //유저 닉네임 삭제 예정
-    @Column(length = 200)
-    private String nickname;
+//    @Column(length = 200)
+//    private String nickname;
 
     //게시글 카테고리
-    private String Category;
+    private String category;
 
     //게시글 제목
     private String title;
 
-    //게시글 작성자(유저 닉네임과 묶을 예정)
-    private String writer;
+    //게시글 작성자(유저 닉네임과 묶을 예정 -> 10월 11일 ManyToOne)
+    @ManyToOne
+    private Member writer;
 
     //게시글 내용
     private String content;
