@@ -1,10 +1,15 @@
 package com.example.oppu.board;
 
+import com.example.oppu.member.Member;
+import com.example.oppu.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RequestMapping("/board")
 @RequiredArgsConstructor
@@ -12,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class BoardController {
 
     private final BoardService boardService;
+    private final MemberService memberService;
 
     //게시판 목록
     @RequestMapping("/boardList")
@@ -33,24 +39,23 @@ public class BoardController {
 
 
     //게시판 새글쓰기
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/insert")
     public String insertBoard() {
         return "/board/insertBoard";
     }
 
     //게시판 새글쓰기
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/insert")
     public String insertBoard(@RequestParam String category,
                               @RequestParam String title,
-                              @RequestParam String nickname,
-                              @RequestParam String content) {
-        this.boardService.insertBoard(category, title, nickname, content);
+                              @RequestParam String content,
+                              Principal principal) {
+        Member member = this.memberService.getMember(principal.getName());
+        this.boardService.insertBoard(category, title, member, content);
         return "redirect:/board/boardList";
     }
 
-//    @PostMapping("/search")
-//    public String searchBoard(@RequestParam("boardSearch") String boardSearch) {
-//        this.boardService.searchEmail(boardSearch);
-//        return "redirect:/board/list";
-//    }
+
 }
