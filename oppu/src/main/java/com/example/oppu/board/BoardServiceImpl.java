@@ -26,9 +26,9 @@ public class BoardServiceImpl implements BoardService{
 
     //PathVariable id 사용하여 상세보기
     public Board getBoardRequest(Long id) {
-        Optional<Board> question = this.boardRepository.findById(id);
-        if (question.isPresent()) {
-            return question.get();
+        Optional<Board> board = this.boardRepository.findById(id);
+        if (board.isPresent()) {
+            return board.get();
         } else {
             throw new DataNotFoundException("question not found");
         }
