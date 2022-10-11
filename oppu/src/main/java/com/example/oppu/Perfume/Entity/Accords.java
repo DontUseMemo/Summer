@@ -26,5 +26,5 @@ public class Accords {
     private String scentName;
 
     @Column(name = "RATIO")
-    private String ratio;
+    private Integer ratio;
 }
