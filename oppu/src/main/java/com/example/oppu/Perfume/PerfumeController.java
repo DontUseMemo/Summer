@@ -1,9 +1,6 @@
 package com.example.oppu.Perfume;
 
-import com.example.oppu.Perfume.Entity.AllNote;
-import com.example.oppu.Perfume.Entity.PerfumeInfo;
-import com.example.oppu.Perfume.Entity.PerfumeNote;
-import com.example.oppu.Perfume.Entity.PerfumerList;
+import com.example.oppu.Perfume.Entity.*;
 import com.example.oppu.Perfume.Repository.PerfumeInfoRepository;
 import com.example.oppu.magazine.Magazine;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +23,6 @@ public class PerfumeController {
     //    private final PerfumeRepository perfumeRepo;
     private final PerfumeService perfumeService;
     private final PerfumeInfoRepository perfumeInfoRepo;
-
-
-
-
-
 
 
     @Autowired
@@ -69,9 +61,9 @@ public class PerfumeController {
 
     //향수 이름으로 상세 페이지 들어감.
     @GetMapping("/perfumeInfo/{perfumeName}")
-    public String perfumeInfo(@PathVariable("perfumeName") String name , Model model){
+    public String perfumeInfo(@PathVariable("perfumeName") String name, Model model) {
         PerfumeInfo perfumeInfo = perfumeService.getPerfumeInfo(name);
-        List<PerfumerList> perfumerList =perfumeService.getPerfumerList(name);
+        List<PerfumerList> perfumerList = perfumeService.getPerfumerList(name);
         List<PerfumeNote> perfumeTop = perfumeService.getPerfumeTop(name);
         List<PerfumeNote> perfumemiddle = perfumeService.getPerfumeMiddle(name);
         List<PerfumeNote> perfumebase = perfumeService.getPerfumeBase(name);
@@ -85,17 +77,18 @@ public class PerfumeController {
         return "/perfume/perfumeInfo";
 
     }
+
     //향수 상세페이지에서 노트 선택시 노트 이름으로 노트 상세페이지 들어감.
     @GetMapping("/note/{note}")
-    public String noteName(@PathVariable("note") String name, Model model){
-        AllNote note =perfumeService.getAllNote(name);
+    public String noteName(@PathVariable("note") String name, Model model) {
+        AllNote note = perfumeService.getAllNote(name);
         model.addAttribute("AllNote", note);
         return "/perfume/note";
     }
 
     //향수 삭제
     @GetMapping("/deletePerfume")
-        public String deletePerfume(PerfumeInfo perfumeinfo) {
+    public String deletePerfume(PerfumeInfo perfumeinfo) {
         perfumeService.DeletePerfume(perfumeinfo);
         return "redirect:/perfume/perfumeList";
 
@@ -125,20 +118,20 @@ public class PerfumeController {
 //    }
 
     @GetMapping("/perfumeList")
-    public String perfumeList(@RequestParam(value="page", defaultValue = "0") int page,
-                              @RequestParam(value = "category",required = false, defaultValue = "")String category,
-                              @RequestParam(value = "keyword", required = false, defaultValue = "")String keyword,
+    public String perfumeList(@RequestParam(value = "page", defaultValue = "0") int page,
+                              @RequestParam(value = "category", required = false, defaultValue = "") String category,
+                              @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                               Pageable pageable, Model model) {
 
 
 //        List<PerfumeInfo> perfumeList =perfumeInfoRepo.findAll();
 
         Page<PerfumeInfo> perfumeList = null;
-        if(category.equals("perfumeName")){
+        if (category.equals("perfumeName")) {
             perfumeList = perfumeInfoRepo.findByPerfumeNameContainingIgnoreCase(pageable, keyword);
-        }else if (category.equals("brand")) {
+        } else if (category.equals("brand")) {
             perfumeList = perfumeInfoRepo.findByBrandContainingIgnoreCase(pageable, keyword);
-        }else{
+        } else {
             perfumeList = perfumeInfoRepo.findAll(pageable);
         }
 
@@ -148,6 +141,14 @@ public class PerfumeController {
 
 
         return "/perfume/perfumeList";
+    }
+
+
+    @GetMapping("/accords")
+    public String accords(String name, Model model){
+        List<Accords> Accords = perfumeService.getAccords(name) ;
+        model.addAttribute("Accords", Accords);
+        return "/perfume/perfumeInfo";
     }
 
 }
