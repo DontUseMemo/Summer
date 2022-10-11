@@ -36,12 +36,19 @@
 <div th:replace="/fragment/nav :: side-nav"></div>
 
 <form class="search-bar" action="" method="GET">
-    <div class="input-group mt-5">
-        <input name="query" type="text" class="form-control" placeholder="검색어 입력">
-        <button class="btn btn-primary" type="submit">검색</button>
+    <div class="input-group mt-1">
+        <select class="form-select" th:type="text" name="category" th:value="${category}">
+            <option value="#" selected disabled hidden>==검색 키워드 선택==</option>
+            <option name="perfumeName" value="perfumeName">향수이름</option>
+            <option name="brand" value="brand">브랜드</option>
+        </select>
+        <input id="keyword" name="keyword" type="text" class="form-control" placeholder="검색어 입력"
+               th:value="${keyword}">
+        <button class="btn btn-primary" type="submit" id="s_button">검색</button>
     </div>
 </form>
 <!--a th:href="|/perfume/perfumeInfo/${perfume.perfumeName}|"-->
+
 <div class="row row-cols-3 row-cols-md-4 row-cols-lg-5 g-1 g-lg-5">
     <div class="col" th:each="perfume : ${perfumeList}">
         <a th:href="|/perfume/perfumeInfo/${perfume.perfumeName}|">
@@ -57,6 +64,21 @@
         </a>
     </div>
 </div>
+<nav>
+    <ul th:if="${!perfumeList.isEmpty()}" class="pagination justify-content-center">
+        <li class="page-item" th:unless="${perfumeList.number == 0}">
+            <a class="page-link" th:href="@{|?page=${(perfumeList.number)-1}|}">이전</a>
+        </li>
+        <li class="page-item" th:each="page : ${#numbers.sequence(0, (perfumeList.totalPages)-1)}"
+            th:if="${page >= (perfumeList.number)-2 and page <= (perfumeList.number)+2}">
+            <a class="page-link" th:text="${page}" th:href="@{|?page=${page}|}">1</a>
+        </li>
+        <li class="page-item" th:unless="${perfumeList.number == (perfumeList.totalPages)-1}">
+            <a class="page-link" th:href="@{|?page=${(perfumeList.number)+1}|}">다음</a>
+        </li>
+    </ul>
+</nav>
+
 <div th:replace="/fragment/footer :: footer"></div>
 </body>
 </html>

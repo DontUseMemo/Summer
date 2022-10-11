@@ -71,4 +71,6 @@ public class PerfumeInfo {
 
     @Column(name = "IMG" , length=74, nullable = false)
     private String img;
+
+
 }
