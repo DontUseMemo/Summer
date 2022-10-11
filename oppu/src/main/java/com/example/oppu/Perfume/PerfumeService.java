@@ -1,27 +1,14 @@
 package com.example.oppu.Perfume;
 
 import com.example.oppu.DataNotFoundException;
-import com.example.oppu.Perfume.Entity.AllNote;
-import com.example.oppu.Perfume.Entity.PerfumeInfo;
-import com.example.oppu.Perfume.Entity.PerfumeNote;
-import com.example.oppu.Perfume.Entity.PerfumerList;
-import com.example.oppu.Perfume.Repository.AllNoteRepository;
-import com.example.oppu.Perfume.Repository.PerfumeInfoRepository;
+import com.example.oppu.Perfume.Entity.*;
+import com.example.oppu.Perfume.Repository.*;
 //import com.example.oppu.Perfume.Repository.PerfumeRepository;
-import com.example.oppu.Perfume.Repository.PerfumeNoteRepository;
-import com.example.oppu.Perfume.Repository.PerfumerRepository;
-import com.example.oppu.magazine.Magazine;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,16 +20,18 @@ public class PerfumeService {
     private final PerfumeNoteRepository perfumeNoteRepo;
 
     private final AllNoteRepository allNoteRepo;
+    private final AccordsRepository accordsRepo;
 
 
 
     @Autowired
-    public PerfumeService(PerfumeInfoRepository perfumeInfoRepo, PerfumerRepository perfumerRepo, PerfumeNoteRepository perfumeNoteRepo, AllNoteRepository allNoteRepo) {
+    public PerfumeService(PerfumeInfoRepository perfumeInfoRepo, PerfumerRepository perfumerRepo, PerfumeNoteRepository perfumeNoteRepo, AllNoteRepository allNoteRepo, AccordsRepository accordsRepo) {
 //        this.perfumeRepo = perfumeRepo;
         this.perfumeInfoRepo = perfumeInfoRepo;
         this.perfumerRepo = perfumerRepo;
         this.perfumeNoteRepo = perfumeNoteRepo;
         this.allNoteRepo = allNoteRepo;
+        this.accordsRepo = accordsRepo;
     }
     //향수 상세페이지
    public PerfumeInfo getPerfumeInfo(String name ) {
@@ -103,32 +92,11 @@ public class PerfumeService {
     }
 
 
+    //Accords
+    public List<Accords> getAccords(String name){
+        return accordsRepo.findByPerfumeName(name);
 
-//검색
-//public JSONArray autoSearch(String searchValue) throws IOException {
-//
-//
-//    JSONArray arrayObj = new JSONArray();
-//    JSONObject jsonObj = null;
-//    ArrayList<String> resultlist = new ArrayList<String>();
-//
-//    // JPA 기능 사용, 포함 단어 검색 메서드인 findByMovieTitleContains();를 이용해도 괜찮음
-//    List<Movie> movies = movieRepository.findByMovieTitleStartsWith(searchValue, Sort.by(Sort.Direction.ASC, "movieTitle"));
-//
-//    for(Movie movie : movies) {
-//        String str = movie.getMovieTitle();
-//        resultlist.add(str);
-//    }
-//    //뽑은 후 json파싱
-//    for(String str : resultlist) {
-//        jsonObj = new JSONObject();
-//        jsonObj.put("data", str);
-//        arrayObj.add(jsonObj);
-//    }
-//
-//    return arrayObj;
-//
-//}
+    }
 
 
 

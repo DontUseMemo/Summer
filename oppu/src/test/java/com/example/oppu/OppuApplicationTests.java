@@ -1,8 +1,10 @@
 package com.example.oppu;
 
+import com.example.oppu.Perfume.Entity.Accords;
 import com.example.oppu.Perfume.Entity.AllNote;
 import com.example.oppu.Perfume.Entity.PerfumerList;
 import com.example.oppu.Perfume.PerfumeService;
+import com.example.oppu.Perfume.Repository.AccordsRepository;
 import com.example.oppu.Perfume.Repository.AllNoteRepository;
 import com.example.oppu.Perfume.Repository.PerfumeInfoRepository;
 
@@ -18,11 +20,16 @@ import java.util.List;
 class OppuApplicationTests {
     @Autowired
     private PerfumeInfoRepository perfumeInfoRepository;
+    @Autowired
     private PerfumeService perfumeService;
+    @Autowired
     private PerfumerRepository perfumerRepository;
 
     @Autowired
     private AllNoteRepository allNoteRepository;
+
+    @Autowired
+    AccordsRepository accordsRepository;
 
     @Test
     public void test(){
@@ -38,11 +45,11 @@ class OppuApplicationTests {
     }
 
     @Test
-    public void testB(){
-        List<AllNote> a = allNoteRepository.findByNoteName("Acai Berry");
-        System.out.println("=====================");
+    public void testAcc(){
+        List<Accords> a = accordsRepository.findByPerfumeName("Baccarat Rouge 540");
+        System.out.println("++++++++==================");
         System.out.println(a.toString());
-        System.out.println("=====================");
+        System.out.println("++++++++==================");
 
     }
 
