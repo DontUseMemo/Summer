@@ -79,6 +79,11 @@ public class PerfumeService {
     public void DeletePerfume(PerfumeInfo perfumeInfo){
         perfumeInfoRepo.findById(perfumeInfo.getPerfumeName());
     }
+
+    public void insertPerfume(PerfumeNote perfumeNote,PerfumerList perfumerList){
+        perfumeNoteRepo.save(perfumeNote);
+        perfumerRepo.save(perfumerList);
+    }
     //페이징
     public Page<PerfumeInfo> findAll(Pageable pageable) {
         System.out.println("-----service findAll-----");

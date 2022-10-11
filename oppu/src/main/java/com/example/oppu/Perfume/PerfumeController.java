@@ -95,11 +95,16 @@ public class PerfumeController {
 
     //향수 삭제
     @GetMapping("/deletePerfume")
-        public String deletePerfume(PerfumeInfo perfumeinfo){
+        public String deletePerfume(PerfumeInfo perfumeinfo) {
         perfumeService.DeletePerfume(perfumeinfo);
         return "redirect:/perfume/perfumeList";
-    }
 
+    }
+    @GetMapping("/insertPerfume")
+        public String insertPerfume(PerfumeNote perfumeNote, PerfumerList perfumerList){
+        perfumeService.insertPerfume(perfumeNote,perfumerList);
+        return "redirect:/perfume/perfumeList";
+    }
     //페이지 기능 없는 검색기능.
 //    @GetMapping("/searchPerfume")
 //    public String searchPerfume(@RequestParam("keyword") String keyword,
