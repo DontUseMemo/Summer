@@ -26,7 +26,7 @@ public class BoardController {
     //게시판 목록
     @RequestMapping("/boardList")
     public String list(Model model,
-                       @PageableDefault(size = 10, sort = "createDate", direction = Sort.Direction.DESC) Pageable pageable,
+                       @PageableDefault(size = 3, sort = "createDate", direction = Sort.Direction.DESC) Pageable pageable,
                        @RequestParam(value = "searchCate", required = false, defaultValue = "")String searchCate,
                        @RequestParam(value = "searchKeyword", required = false, defaultValue = "")String searchKeyword) {
 
