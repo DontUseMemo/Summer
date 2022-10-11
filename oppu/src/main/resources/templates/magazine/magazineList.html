@@ -108,20 +108,39 @@
         </tbody>
     </table>
     <a th:href="@{/magazine/insertMagazine}" class="btn btn-light">글쓰기</a>
-    <form class="search-bar" th:action="@{/magazine/magazineList}" method="GET">
+    <form class="row mt-1 justify-content-center" th:action="@{/magazine/magazineList}" method="GET">
         <input type="hidden" name="page" value="0">
         <input type="hidden" name="size" value="10">
-        <div class="input-group mt-1">
+        <div class="col-lg-2 col-auto">
             <select class="form-select" th:type="text" name="scategory" th:value="${scategory}">
                 <option name="title" value="title">제목</option>
                 <option name="content" value="content">내용</option>
                 <option name="writer" value="writer">작성자</option>
             </select>
-            <input id="keyword" name="keyword" type="text" class="form-control" placeholder="검색어 입력"
-                   th:value="${keyword}">
-            <button class="btn btn-primary" type="submit" id="s_button">검색</button>
+        </div>
+        <div class="col-lg-3 col-auto">
+            <div class="input-group">
+                <input id="keyword" name="keyword" type="text" class="form-control" placeholder="검색어 입력"
+                       th:value="${keyword}">
+                <button class="btn btn-primary" type="submit" id="s_button">검색</button>
+            </div>
         </div>
     </form>
+
+<!--    <form class="search-bar" th:action="@{/magazine/magazineList}" method="GET">-->
+<!--        <input type="hidden" name="page" value="0">-->
+<!--        <input type="hidden" name="size" value="10">-->
+<!--        <div class="input-group mt-1">-->
+<!--            <select class="form-select" th:type="text" name="scategory" th:value="${scategory}">-->
+<!--                <option name="title" value="title">제목</option>-->
+<!--                <option name="content" value="content">내용</option>-->
+<!--                <option name="writer" value="writer">작성자</option>-->
+<!--            </select>-->
+<!--            <input id="keyword" name="keyword" type="text" class="form-control" placeholder="검색어 입력"-->
+<!--                   th:value="${keyword}">-->
+<!--            <button class="btn btn-primary" type="submit" id="s_button">검색</button>-->
+<!--        </div>-->
+<!--    </form>-->
     <!--페이징-->
     <nav>
         <ul th:if="${!magazine.isEmpty()}" class="pagination justify-content-center">

@@ -34,19 +34,35 @@
 <body>
 <div th:replace="/fragment/nav :: top-nav"></div>
 <div th:replace="/fragment/nav :: side-nav"></div>
-
-<form class="search-bar" action="" method="GET">
-    <div class="input-group mt-1">
+<form class="row mt-1 justify-content-center" th:action="@{/magazine/magazineList}" method="GET">
+    <div class="col-lg-2 col-auto">
         <select class="form-select" th:type="text" name="category" th:value="${category}">
             <option value="#" selected disabled hidden>==검색 키워드 선택==</option>
             <option name="perfumeName" value="perfumeName">향수이름</option>
             <option name="brand" value="brand">브랜드</option>
         </select>
-        <input id="keyword" name="keyword" type="text" class="form-control" placeholder="검색어 입력"
-               th:value="${keyword}">
-        <button class="btn btn-primary" type="submit" id="s_button">검색</button>
+    </div>
+    <div class="col-lg-3 col-auto">
+        <div class="input-group">
+            <input id="keyword" name="keyword" type="text" class="form-control" placeholder="검색어 입력"
+                   th:value="${keyword}">
+            <button class="btn btn-primary" type="submit" id="s_button">검색</button>
+        </div>
     </div>
 </form>
+
+<!--<form class="search-bar" action="" method="GET">-->
+<!--    <div class="input-group mt-1">-->
+<!--        <select class="form-select" th:type="text" name="category" th:value="${category}">-->
+<!--            <option value="#" selected disabled hidden>==검색 키워드 선택==</option>-->
+<!--            <option name="perfumeName" value="perfumeName">향수이름</option>-->
+<!--            <option name="brand" value="brand">브랜드</option>-->
+<!--        </select>-->
+<!--        <input id="keyword" name="keyword" type="text" class="form-control" placeholder="검색어 입력"-->
+<!--               th:value="${keyword}">-->
+<!--        <button class="btn btn-primary" type="submit" id="s_button">검색</button>-->
+<!--    </div>-->
+<!--</form>-->
 <!--a th:href="|/perfume/perfumeInfo/${perfume.perfumeName}|"-->
 
 <div class="row row-cols-3 row-cols-md-4 row-cols-lg-5 g-1 g-lg-5">
