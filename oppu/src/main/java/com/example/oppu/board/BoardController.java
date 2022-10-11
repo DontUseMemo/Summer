@@ -4,6 +4,9 @@ import com.example.oppu.member.Member;
 import com.example.oppu.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,17 +20,31 @@ import java.security.Principal;
 public class BoardController {
 
     private final BoardService boardService;
+    private final BoardRepository boardRepository;
     private final MemberService memberService;
 
     //게시판 목록
     @RequestMapping("/boardList")
-    public String list(Model model, @RequestParam(value="page", defaultValue = "0") int page) {
-//        List<Board> boardList = this.boardService.getList();
-//        model.addAttribute("boardList", boardList);
-        Page<Board> paging = this.boardService.getList(page);
-        model.addAttribute("paging", paging);
+    public String list(Model model,
+                       @PageableDefault(size = 10, sort = "createDate", direction = Sort.Direction.DESC) Pageable pageable,
+                       @RequestParam(value = "searchCate", required = false, defaultValue = "")String searchCate,
+                       @RequestParam(value = "searchKeyword", required = false, defaultValue = "")String searchKeyword) {
+
+        model.addAttribute("searchCate", searchCate);
+        model.addAttribute("searchKeyword", searchKeyword);
+        model.addAttribute("paging", boardService.getList(searchCate, searchKeyword, pageable));
+
         return "/board/boardList";
     }
+
+//    @RequestMapping("/boardList")
+//    public String list(Model model, @RequestParam(value="page", defaultValue = "0") int page) {
+////        List<Board> boardList = this.boardService.getList();
+////        model.addAttribute("boardList", boardList);
+//        Page<Board> paging = this.boardService.getList(page);
+//        model.addAttribute("paging", paging);
+//        return "/board/boardList";
+//    }
 
     //게시판 상세보기
     @RequestMapping(value = "/getBoard/{id}")
