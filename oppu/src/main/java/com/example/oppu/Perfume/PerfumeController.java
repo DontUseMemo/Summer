@@ -67,12 +67,13 @@ public class PerfumeController {
         List<PerfumeNote> perfumeTop = perfumeService.getPerfumeTop(name);
         List<PerfumeNote> perfumemiddle = perfumeService.getPerfumeMiddle(name);
         List<PerfumeNote> perfumebase = perfumeService.getPerfumeBase(name);
-
+        List<Accords> Accords = perfumeService.getAccords(name) ;
         model.addAttribute("perfumeInfo", perfumeInfo);
         model.addAttribute("perfumerList", perfumerList);
         model.addAttribute("perfumeTop", perfumeTop);
         model.addAttribute("perfumeMiddle", perfumemiddle);
         model.addAttribute("perfumeBase", perfumebase);
+        model.addAttribute("Accords", Accords);
 
         return "/perfume/perfumeInfo";
 
@@ -144,11 +145,6 @@ public class PerfumeController {
     }
 
 
-    @GetMapping("/accords")
-    public String accords(String name, Model model){
-        List<Accords> Accords = perfumeService.getAccords(name) ;
-        model.addAttribute("Accords", Accords);
-        return "/perfume/perfumeInfo";
-    }
+
 
 }

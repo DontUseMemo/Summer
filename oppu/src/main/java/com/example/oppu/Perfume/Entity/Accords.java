@@ -16,8 +16,8 @@ import javax.persistence.Table;
 public class Accords {
 
     @Id
-    @Column(name = "SEQ", length = 38)
-    private Integer seq;
+    @Column(name = "ID", length = 38)
+    private Integer id;
 
     @Column(name = "PERFUME_NAME", length=70, nullable = false)
     private String perfumeName;
@@ -26,5 +26,5 @@ public class Accords {
     private String scentName;
 
     @Column(name = "RATIO")
-    private float ratio;
+    private Integer ratio;
 }
