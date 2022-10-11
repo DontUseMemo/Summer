@@ -1,5 +1,6 @@
 package com.example.oppu.reply;
 
+import com.example.oppu.base_entity.BaseTimeEntity;
 import com.example.oppu.board.Board;
 import com.example.oppu.member.Member;
 import lombok.AllArgsConstructor;
@@ -16,10 +17,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Reply {
+public class Reply extends BaseTimeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     //댓글 내용
@@ -36,7 +37,7 @@ public class Reply {
 //    private int reportNumber;
 
     //baseEntity 상속받을 예정
-    private LocalDateTime createDate;
+//    private LocalDateTime createDate;
 
     //게시글
     @ManyToOne
