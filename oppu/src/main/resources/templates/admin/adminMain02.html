@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:replace="/fragment/header :: head"></div>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidebar {
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            background-color: #f1f1f1;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .sidebar a {
+            display: block;
+            color: black;
+            padding: 16px;
+            text-decoration: none;
+        }
+
+        .sidebar a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        .sidebar a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+
+        div.content {
+            margin-left: 200px;
+            padding: 1px 16px;
+            height: 1000px;
+        }
+
+        @media screen and (max-width: 700px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .sidebar a {float: left;}
+            div.content {margin-left: 0;}
+        }
+
+        @media screen and (max-width: 400px) {
+            .sidebar a {
+                text-align: center;
+                float: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<div th:fragment="sidebar" class="sidebar">
+    <a class="active" href="/admin">관리자 홈</a>
+    <a href="/admin/allMember">유저 정보 조회</a>
+    <a href="#edf">로그인</a>
+    <a href="#fe">로그아웃</a>
+</div>
+
+<div class="content">
+    <h2>관리자 메인 페이지입니다.</h2>
+    <p>관리자 ...이 로그인 했습니다.</p>
+    <p>관리자 페이지 이용 후 반드시 로그아웃 해주세요</p>
+    <h3>Resize the browser window to see the effect.</h3>
+</div>
+</body>
+</html>
