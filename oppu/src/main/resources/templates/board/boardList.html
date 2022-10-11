@@ -26,14 +26,6 @@
             text-decoration: none;
             cursor: pointer;
         }
-
-        .search-bar {
-            width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 15px;
-        }
-
         @media screen and (max-width: 1210px) {
             .table-responsive {
                 margin-left: 10px;
@@ -87,15 +79,19 @@
         </tbody>
     </table>
     <a th:href="@{/board/insert}" class="btn btn-light">글쓰기</a>
-    <form class="search-bar" action="" method="GET">
-        <div class="input-group mt-1">
-            <select id="searchCate" name="searchCate" class="form-select">
-                <option value="title">제목</option>
-                <option value="nickname">작성자</option>
-                <option value="content">내용</option>
+    <form class="row mt-1 mb-3 justify-content-center" action="" method="GET">
+        <div class="col-lg-2 col-auto">
+            <select class="form-select">
+                <option name="title" value="title">제목</option>
+                <option name="nickname" value="nickname">작성자</option>
+                <option name="content" value="content">내용</option>
             </select>
-            <input name="searchKeyword" type="text" class="form-control" placeholder="검색어 입력">
-            <button class="btn btn-primary" type="submit">검색</button>
+        </div>
+        <div class="col-lg-3 col-auto">
+            <div class="input-group">
+                <input name="query" type="text" class="form-control" placeholder="검색어 입력">
+                <button class="btn btn-primary" type="submit">검색</button>
+            </div>
         </div>
     </form>
     <!--페이징-->
