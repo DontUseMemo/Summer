@@ -15,7 +15,7 @@ public interface BoardService {
     Board getBoardRequest(Long id);
 
     //게시글 등록하기
-    void insertBoard(String category, String title, Member member, String content);
+    void insertBoard(String title, String category, String content, Member member);
 
     //게시글 목록보기
     Page<Board> getList(int page);
@@ -23,4 +23,6 @@ public interface BoardService {
     //게시글 카테고리, 검색하여 목록보기
     Page<Board> getList(String searchCate, String searchKeyword, Pageable pageable);
 
+    // 게시글 수정하기
+    void modify(Board board, String title, String category, String content);
 }

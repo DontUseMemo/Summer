@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Reply extends BaseTimeEntity {
+public class Reply {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -36,8 +36,12 @@ public class Reply extends BaseTimeEntity {
 //    //댓글 신고수
 //    private int reportNumber;
 
-    //baseEntity 상속받을 예정
-//    private LocalDateTime createDate;
+    // 댓글 작성일
+    private LocalDateTime createDate;
+
+    //댓글 수정일
+    private LocalDateTime modifyDate;
+
 
     //게시글
     @ManyToOne

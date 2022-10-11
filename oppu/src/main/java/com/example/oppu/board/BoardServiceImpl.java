@@ -38,12 +38,12 @@ public class BoardServiceImpl implements BoardService{
 
     //새글 쓰기
     @Override
-    public void insertBoard(String category, String title, Member member, String content) {
+    public void insertBoard(String title, String category, String content, Member member) {
         Board board = new Board();
-        board.setCategory(category);
         board.setTitle(title);
-        board.setWriter(member);
+        board.setCategory(category);
         board.setContent(content);
+        board.setWriter(member);
         board.setCreateDate(LocalDateTime.now());
         this.boardRepository.save(board);
     }
@@ -78,4 +78,11 @@ public class BoardServiceImpl implements BoardService{
         return boards;
     }
 
+    public void modify(Board board, String title, String category, String content) {
+        board.setTitle(title);
+        board.setContent(content);
+        board.setCategory(category);
+        board.setModifyDate(LocalDateTime.now());
+        this.boardRepository.save(board);
+    }
 }

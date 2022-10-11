@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Board extends BaseTimeEntity {
+public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -49,8 +49,11 @@ public class Board extends BaseTimeEntity {
 //    //게시글 신고수
 //    private int reportNumber;
 
-    //baseEntity 상속받고 삭제예정
-//    private LocalDateTime createDate;
+    // 게시글 작성일
+    private LocalDateTime createDate;
+
+    // 게시글 수정일일
+   private LocalDateTime modifyDate;
 
     //댓글 리스트
     @OneToMany(mappedBy = "board")
