@@ -55,7 +55,7 @@
             </tr>
             <tr>
                 <th>닉네임</th>
-                <td th:text="${board.nickname}">닉네임이 표시됨</td>
+                <td th:text="${board.writer.nickname}">닉네임이 표시됨</td>
             </tr>
             <tr>
                 <th>작성일</th>
@@ -82,7 +82,7 @@
     <table id="reply" class="table border-top">
         <tbody>
             <tr th:each="reply : ${board.replyList}">
-                <th>댓글 작성자</th>
+                <th th:text="${reply.writer.nickname}"></th>
                 <td th:text="${reply.content}">댓글 내용</td>
             </tr>
         </tbody>

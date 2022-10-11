@@ -1,6 +1,7 @@
 package com.example.oppu.board;
 
 import com.example.oppu.DataNotFoundException;
+import com.example.oppu.member.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,20 +27,20 @@ public class BoardServiceImpl implements BoardService{
 
     //PathVariable id 사용하여 상세보기
     public Board getBoardRequest(Long id) {
-        Optional<Board> question = this.boardRepository.findById(id);
-        if (question.isPresent()) {
-            return question.get();
+        Optional<Board> board = this.boardRepository.findById(id);
+        if (board.isPresent()) {
+            return board.get();
         } else {
             throw new DataNotFoundException("question not found");
         }
     }
 
     //새글 쓰기
-    public void insertBoard(String category, String title, String nickname, String content) {
+    public void insertBoard(String category, String title, Member member, String content) {
         Board board = new Board();
         board.setCategory(category);
         board.setTitle(title);
-        board.setNickname(nickname);
+        board.setWriter(member);
         board.setContent(content);
         board.setCreateDate(LocalDateTime.now());
         this.boardRepository.save(board);

@@ -8,5 +8,7 @@ import org.springframework.stereotype.Service;
 public interface MemberService {
 
     //회원가입
-    void insertMember(String userId, String nickname, String password, String email);
+    Member insertMember(String username, String nickname, String password, String email);
+
+    Member getMember(String username);
 }

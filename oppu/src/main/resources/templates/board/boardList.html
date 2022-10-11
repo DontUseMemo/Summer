@@ -81,7 +81,7 @@
                     <a th:href="@{|/board/getBoard/${board.id}|}" th:text="${board.title}"></a>
                     <span th:if="|(${#lists.size(board.replyList) > 0})|" th:text="|(${#lists.size(board.replyList)})|"></span>
                 </td>
-                <td th:text="${board.nickname}"></td>
+                <td th:text="${board.writer.nickname}"></td>
                 <td th:text="${board.createDate}"></td>
                 <td th:text="0"></td>
             </tr>
