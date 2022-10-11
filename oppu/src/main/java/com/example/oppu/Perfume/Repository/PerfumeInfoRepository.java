@@ -17,11 +17,9 @@ public interface PerfumeInfoRepository extends JpaRepository<PerfumeInfo, String
 
     PerfumeInfo findByPerfumeName(String name);
 
-    List<PerfumeInfo> findByPerfumeNameContaining(String name);
-    List<PerfumeInfo> findByBrandContaining(String brand);
 
-    Page<PerfumeInfo> findByPerfumeNameContaining(Pageable pageable,String keyword);
-    Page<PerfumeInfo> findByBrandContaining(Pageable pageable , String keyword);
+    Page<PerfumeInfo> findByPerfumeNameContainingIgnoreCase(Pageable pageable,String keyword);
+    Page<PerfumeInfo> findByBrandContainingIgnoreCase(Pageable pageable , String keyword);
 
 
 

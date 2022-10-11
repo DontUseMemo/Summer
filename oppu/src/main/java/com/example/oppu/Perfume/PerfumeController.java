@@ -40,32 +40,32 @@ public class PerfumeController {
     }
 
     //향수 List, Page, 검색
-    @GetMapping("/perfumeList")
-    public String perfumeList(@RequestParam(value="page", defaultValue = "0") int page,
-                              @RequestParam(value = "category",required = false, defaultValue = "")String category,
-                              @RequestParam(value = "keyword", required = false, defaultValue = "")String keyword,
-                              Pageable pageable, Model model) {
-
-
-        List<PerfumeInfo> perfumeList =perfumeInfoRepo.findAll();
-
-        Page<PerfumeInfo> perfumeInfos = null;
-
-        if(category.equals("title")){
-            perfumeInfos = perfumeInfoRepo.findByPerfumeNameContaining(pageable, keyword);
-        }else if (category.equals("content")) {
-            perfumeInfos = perfumeInfoRepo.findByBrandContaining(pageable, keyword);
-        }else{
-            perfumeInfos = perfumeInfoRepo.findAll(pageable);
-        }
-
-        model.addAttribute("perfumeList", perfumeList);
-        model.addAttribute("category", category);
-        model.addAttribute("keyword", keyword);
-
-
-        return "/perfume/perfumeList";
-    }
+//    @GetMapping("/perfumeList")
+//    public String perfumeList(@RequestParam(value="page", defaultValue = "0") int page,
+//                              @RequestParam(value = "category",required = false, defaultValue = "")String category,
+//                              @RequestParam(value = "keyword", required = false, defaultValue = "")String keyword,
+//                              Pageable pageable, Model model) {
+//
+//
+//        List<PerfumeInfo> perfumeList =perfumeInfoRepo.findAll();
+//
+//        Page<PerfumeInfo> perfumeInfos = null;
+//
+//        if(category.equals("title")){
+//            perfumeInfos = perfumeInfoRepo.findByPerfumeNameContaining(pageable, keyword);
+//        }else if (category.equals("content")) {
+//            perfumeInfos = perfumeInfoRepo.findByBrandContaining(pageable, keyword);
+//        }else{
+//            perfumeInfos = perfumeInfoRepo.findAll(pageable);
+//        }
+//
+//        model.addAttribute("perfumeList", perfumeList);
+//        model.addAttribute("category", category);
+//        model.addAttribute("keyword", keyword);
+//
+//
+//        return "/perfume/perfumeList";
+//    }
 
     //향수 이름으로 상세 페이지 들어감.
     @GetMapping("/perfumeInfo/{perfumeName}")
@@ -100,11 +100,7 @@ public class PerfumeController {
         return "redirect:/perfume/perfumeList";
 
     }
-    @GetMapping("/insertPerfume")
-        public String insertPerfume(PerfumeNote perfumeNote, PerfumerList perfumerList){
-        perfumeService.insertPerfume(perfumeNote,perfumerList);
-        return "redirect:/perfume/perfumeList";
-    }
+
     //페이지 기능 없는 검색기능.
 //    @GetMapping("/searchPerfume")
 //    public String searchPerfume(@RequestParam("keyword") String keyword,
@@ -127,4 +123,31 @@ public class PerfumeController {
 //
 //        return "/perfume/perfumeList";
 //    }
+
+    @GetMapping("/perfumeList")
+    public String perfumeList(@RequestParam(value="page", defaultValue = "0") int page,
+                              @RequestParam(value = "category",required = false, defaultValue = "")String category,
+                              @RequestParam(value = "keyword", required = false, defaultValue = "")String keyword,
+                              Pageable pageable, Model model) {
+
+
+//        List<PerfumeInfo> perfumeList =perfumeInfoRepo.findAll();
+
+        Page<PerfumeInfo> perfumeList = null;
+        if(category.equals("perfumeName")){
+            perfumeList = perfumeInfoRepo.findByPerfumeNameContainingIgnoreCase(pageable, keyword);
+        }else if (category.equals("brand")) {
+            perfumeList = perfumeInfoRepo.findByBrandContainingIgnoreCase(pageable, keyword);
+        }else{
+            perfumeList = perfumeInfoRepo.findAll(pageable);
+        }
+
+        model.addAttribute("perfumeList", perfumeList);
+        model.addAttribute("category", category);
+        model.addAttribute("keyword", keyword);
+
+
+        return "/perfume/perfumeList";
+    }
+
 }

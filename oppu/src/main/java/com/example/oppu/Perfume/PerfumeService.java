@@ -80,8 +80,9 @@ public class PerfumeService {
         perfumeInfoRepo.findById(perfumeInfo.getPerfumeName());
     }
 
-    public void insertPerfume(PerfumeNote perfumeNote,PerfumerList perfumerList){
+    public void insertPerfume(PerfumeNote perfumeNote,PerfumerList perfumerList,String perfumer){
         perfumeNoteRepo.save(perfumeNote);
+        perfumerList.setPerfumer(perfumer);
         perfumerRepo.save(perfumerList);
     }
     //페이징
@@ -93,12 +94,12 @@ public class PerfumeService {
     // 향수 검색 메소드
     public Page<PerfumeInfo> findByPerfumeName(Pageable pageable, String keyword) {
         System.out.println("-----service findByTitle-----");
-        return perfumeInfoRepo.findByPerfumeNameContaining(pageable, keyword);
+        return perfumeInfoRepo.findByPerfumeNameContainingIgnoreCase(pageable, keyword);
     }
     //브랜드 검색
     public Page<PerfumeInfo> findByBrand(Pageable pageable, String keyword) {
         System.out.println("-----service findByTitle-----");
-        return perfumeInfoRepo.findByBrandContaining(pageable, keyword);
+        return perfumeInfoRepo.findByBrandContainingIgnoreCase(pageable, keyword);
     }
 
 
