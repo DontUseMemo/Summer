@@ -83,36 +83,35 @@ public class BoardController {
                               BindingResult bindingResult,
                               Principal principal,
                               @Nullable @RequestParam("uploadfile") MultipartFile[] uploadFile) {
+
         if (bindingResult.hasErrors()) {
             return "/board/insertBoard";
         }
-            try {
+        try {
 //            this.boardService.insertBoard(category, title, nickname, content);
+            Member member = this.memberService.getMember(principal.getName());
+            Long board_id = this.boardService.insertBoard(boardForm.getTitle(), boardForm.getCategory(), boardForm.getContent(), member);
 
 
-                Member member = this.memberService.getMember(principal.getName());
-                Long board_id = this.boardService.insertBoard(boardForm.getTitle(), boardForm.getCategory(), boardForm.getContent(), member);
-
-                //MultipartFile로 클라이언트에서 온 데이터가 무결성 조건에 성립을 안하거나 메타데이터가 없거나 문제가 새길 여지를 if문으로 처리
-                for (MultipartFile file : uploadFile)
-                    if (!file.isEmpty()) {
-                        FileUploadEntity entity = new FileUploadEntity(null,
-                                UUID.randomUUID().toString(),
-                                file.getContentType(),
-                                file.getName(),
-                                file.getOriginalFilename(),
-                                board_id
-                        );
-                        //file업로드 테이블에 데이터 저장
-                        boardService.insertFileUploadEntity(entity);
-                        File newFileName = new File(entity.getUuid() + "_" + entity.getOriginalFileName());
-                        //서버에 이미지 파일 저장
-                        file.transferTo(newFileName);
-                    }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+            //MultipartFile로 클라이언트에서 온 데이터가 무결성 조건에 성립을 안하거나 메타데이터가 없거나 문제가 새길 여지를 if문으로 처리
+            for (MultipartFile file : uploadFile)
+                if (!file.isEmpty()) {
+                    FileUploadEntity entity = new FileUploadEntity(null,
+                            UUID.randomUUID().toString(),
+                            file.getContentType(),
+                            file.getName(),
+                            file.getOriginalFilename(),
+                            board_id
+                    );
+                    //file업로드 테이블에 데이터 저장
+                    boardService.insertFileUploadEntity(entity);
+                    File newFileName = new File(entity.getUuid() + "_" + entity.getOriginalFileName());
+                    //서버에 이미지 파일 저장
+                    file.transferTo(newFileName);
+                }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 //        Member member = this.memberService.getMember(principal.getName());
 //        this.boardService.insertBoard(boardForm.getTitle(), boardForm.getCategory(), boardForm.getContent(), member);
 
