@@ -15,7 +15,7 @@ public interface BoardService {
     Board getBoardRequest(Long id);
 
     //게시글 등록하기
-    void insertBoard(String title, String category, String content, Member member);
+    Long insertBoard(String title, String category, String content, Member member);
 
     //게시글 목록보기
     Page<Board> getList(int page);
@@ -25,4 +25,8 @@ public interface BoardService {
 
     // 게시글 수정하기
     void modify(Board board, String title, String category, String content);
+
+    Long insertFileUploadEntity(FileUploadEntity fileUploadEntity);
+
+    List<FileUploadEntity> getFileuploadEntity2(Long board_seq);
 }
