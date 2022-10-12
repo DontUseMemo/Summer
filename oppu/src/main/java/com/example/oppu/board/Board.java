@@ -1,5 +1,6 @@
 package com.example.oppu.board;
 
+import com.example.oppu.base_entity.BaseTimeEntity;
 import com.example.oppu.member.Member;
 import com.example.oppu.reply.Reply;
 import lombok.AllArgsConstructor;
@@ -19,7 +20,7 @@ import java.util.List;
 public class Board {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     //유저 닉네임 삭제 예정
@@ -48,8 +49,11 @@ public class Board {
 //    //게시글 신고수
 //    private int reportNumber;
 
-    //baseEntity 상속받고 삭제예정
+    // 게시글 작성일
     private LocalDateTime createDate;
+
+    // 게시글 수정일일
+   private LocalDateTime modifyDate;
 
     //댓글 리스트
     @OneToMany(mappedBy = "board")

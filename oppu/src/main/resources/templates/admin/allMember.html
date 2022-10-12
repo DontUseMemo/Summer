@@ -41,55 +41,54 @@
                                     <tr>
                                         <th>번호</th>
                                         <th>아이디</th>
+                                        <th>닉네임</th>
                                         <th>이메일</th>
-                                        <th>경고횟수</th>
-                                        <th>최근 로그인</th>
+                                        <th>계정 생성일</th>
                                         <th>정지YN</th>
                                         <th>계정 삭제</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>sd3215</td>
-                                        <td>sd3214@naver.com</td>
-                                        <td>3</td>
-                                        <td>2022-10-10:12:03:01</td>
-                                        <td>Y</td>
+                                    <tr th:each="member : ${paging}">
+                                        <td th:text="${member.id}">1</td>
+                                        <td th:text="${member.username}">sd3215</td>
+                                        <td th:text="${member.nickname}">하잉하잉</td>
+                                        <td th:text="${member.email}">sd3214@naver.com</td>
+                                        <td th:text="${#temporals.format(member.createDate, 'yyyy-MM-dd HH:mm')}">2022-10-10:12:03:01</td>
+                                        <td>N</td>
                                         <td><a href="/delete"><i class="bi bi-trash3"></i></a></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <form class="row mt-1 mb-3 justify-content-center" action="" method="POST">
+                        <form class="row mt-1 mb-3 justify-content-center" method="Get">
                             <div class="col-lg-2 col-auto">
-                                <select class="form-select">
-                                    <option name="id" value="id">아이디</option>
-                                    <option name="email" value="email">이메일</option>
+                                <select name="searchCate" class="form-select">
+                                    <option value="username">아이디</option>
+                                    <option value="email">이메일</option>
                                 </select>
                             </div>
                             <div class="col-lg-3 col-auto">
                                 <div class="input-group">
-                                    <input name="query" type="text" class="form-control" placeholder="검색어 입력">
+                                    <input name="searchKeyword" type="text" class="form-control" placeholder="검색어 입력">
                                     <button class="btn btn-primary" type="submit">검색</button>
                                 </div>
                             </div>
                         </form>
-                        <!--페이징-->
-<!--                        <nav>-->
-<!--                            <ul th:if="${!paging.isEmpty()}" class="pagination justify-content-center">-->
-<!--                                <li class="page-item" th:unless="${paging.number == 0}">-->
-<!--                                    <a class="page-link" th:href="@{|?page=${(paging.number)-1}|}">이전</a>-->
-<!--                                </li>-->
-<!--                                <li class="page-item" th:each="page : ${#numbers.sequence(0, (paging.totalPages)-1)}"-->
-<!--                                    th:if="${page >= (paging.number)-2 and page <= (paging.number)+2}">-->
-<!--                                    <a class="page-link" th:text="${page}" th:href="@{|?page=${page}|}">1</a>-->
-<!--                                </li>-->
-<!--                                <li class="page-item" th:unless="${paging.number == (paging.totalPages)-1}">-->
-<!--                                    <a class="page-link" th:href="@{|?page=${(paging.number)+1}|}">다음</a>-->
-<!--                                </li>-->
-<!--                            </ul>-->
-<!--                        </nav>-->
+                        <nav>
+                            <ul th:if="${!paging.isEmpty()}" class="pagination justify-content-center">
+                                <li class="page-item" th:unless="${paging.number == 0}">
+                                    <a class="page-link" th:href="@{/admin/allMember(page=${(paging.number)-1}, searchCate=${searchCate}, searchKeyword=${searchKeyword})}">이전</a>
+                                </li>
+                                <li class="page-item" th:each="page : ${#numbers.sequence(0, (paging.totalPages)-1)}"
+                                    th:if="${page >= (paging.number)-2 and page <= (paging.number)+2}">
+                                    <a class="page-link" th:text="${page}" th:href="@{/admin/allMember(page=${page}, searchCate=${searchCate}, searchKeyword=${searchKeyword})}">1</a>
+                                </li>
+                                <li class="page-item" th:unless="${paging.number == (paging.totalPages)-1}">
+                                    <a class="page-link" th:href="@{/admin/allMember(page=${(paging.number)+1}, searchCate=${searchCate}, searchKeyword=${searchKeyword})}">다음</a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
