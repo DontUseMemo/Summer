@@ -26,6 +26,7 @@ public class BoardServiceImpl implements BoardService{
 
 
     //PathVariable id 사용하여 상세보기
+    @Override
     public Board getBoardRequest(Long id) {
         Optional<Board> board = this.boardRepository.findById(id);
         if (board.isPresent()) {
@@ -36,26 +37,52 @@ public class BoardServiceImpl implements BoardService{
     }
 
     //새글 쓰기
-    public void insertBoard(String category, String title, Member member, String content) {
+    @Override
+    public void insertBoard(String title, String category, String content, Member member) {
         Board board = new Board();
-        board.setCategory(category);
         board.setTitle(title);
-        board.setWriter(member);
+        board.setCategory(category);
         board.setContent(content);
+        board.setWriter(member);
         board.setCreateDate(LocalDateTime.now());
         this.boardRepository.save(board);
     }
 
-//    public List<Board> searchEmail(String boardSearch) {
-//        return this.boardRepository.findBoardsByTitle(boardSearch);
-//    }
-
-    //페이징 된 리스트 불러오기
-    //이후 검색기능 추가될 예정
+    //게시글 목록보기
+    //이후 검색기능 추가될 예정(10월 11일 Controller에 추가)
+    @Override
     public Page<Board> getList(int page) {
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("createDate"));
-        Pageable pageable = PageRequest.of(page, 2, Sort.by(sorts));
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
         return this.boardRepository.findAll(pageable);
+    }
+
+
+    //게시글 카테고리, 검색하여 목록보기
+    @Override
+    public Page<Board> getList(String searchCate, String searchKeyword, Pageable pageable) {
+
+        Page<Board> boards = null;
+
+        if (searchCate.equals("title")) {
+            boards = boardRepository.findByTitleContaining(searchKeyword, pageable);
+        } else if (searchCate.equals("writer")) {
+            boards = boardRepository.findByWriterContaining(searchKeyword, pageable);
+        } else if (searchCate.equals("content")) {
+            boards = boardRepository.findByContentContaining(searchKeyword, pageable);
+        } else {
+            boards = boardRepository.findAll(pageable);
+        }
+
+        return boards;
+    }
+
+    public void modify(Board board, String title, String category, String content) {
+        board.setTitle(title);
+        board.setContent(content);
+        board.setCategory(category);
+        board.setModifyDate(LocalDateTime.now());
+        this.boardRepository.save(board);
     }
 }
