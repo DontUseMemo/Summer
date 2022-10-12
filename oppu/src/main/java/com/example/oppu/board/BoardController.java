@@ -165,7 +165,7 @@ public class BoardController {
 //    }
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/modify/{id}")
-    public String boardModify(Model model, BoardForm boardForm, @PathVariable("id") Long id, Principal principal) {
+    public String updateBoard(Model model, BoardForm boardForm, @PathVariable("id") Long id, Principal principal) {
         Board board = this.boardService.getBoardRequest(id);
         if (!board.getWriter().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정 권한이 없습니다.");
@@ -178,7 +178,7 @@ public class BoardController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/modify/{id}")
-    public String boardModify(@Valid BoardForm boardForm, BindingResult bindingResult,
+    public String updateBoard(@Valid BoardForm boardForm, BindingResult bindingResult,
                               Principal principal, @PathVariable("id") Long id) {
         if (bindingResult.hasErrors()) {
             return "/board/insertBoard";

@@ -5,11 +5,11 @@
     <title>Title</title>
     <div th:replace="/fragment/header :: head"></div>
     <style>
-        .table-responsive {
+        .container {
             padding-top: 150px;
             padding-bottom: 100px;
-            margin-right: 130px;
-            margin-left: 130px;
+            /*margin-right: 130px;*/
+            /*margin-left: 130px;*/
         }
         h1 {
             font-weight: bold;
@@ -27,7 +27,7 @@
             cursor: pointer;
         }
         @media screen and (max-width: 1210px) {
-            .table-responsive {
+            .container {
                 margin-left: 10px;
                 margin-right: 10px;
             }
@@ -50,7 +50,7 @@
 <div th:replace="/fragment/nav :: top-nav"></div>
 <div th:replace="/fragment/nav :: side-nav"></div>
 
-<div class="table-responsive">
+<div class="container">
 <h1>커뮤니티</h1>
 <!-- The form -->
     <table class="table table-hover">
@@ -66,15 +66,15 @@
         </thead>
         <tbody>
             <tr th:each="board : ${paging}">
-                <td th:text="${board.id}"></td>
-                <td th:text="${board.category}">카테고리 출력</td>
+                <td class="text-center" th:text="${board.id}"></td>
+                <td class="text-center" th:text="${board.category}">카테고리 출력</td>
                 <td>
                     <a th:href="@{|/board/getBoard/${board.id}|}" th:text="${board.title}"></a>
                     <span th:if="|(${#lists.size(board.replyList) > 0})|" th:text="|(${#lists.size(board.replyList)})|"></span>
                 </td>
-                <td th:text="${board.writer.nickname}"></td>
-                <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}"></td>
-                <td th:text="0"></td>
+                <td class="text-center" th:text="${board.writer.nickname}"></td>
+                <td class="text-center" th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+                <td class="text-center" th:text="0"></td>
             </tr>
         </tbody>
     </table>

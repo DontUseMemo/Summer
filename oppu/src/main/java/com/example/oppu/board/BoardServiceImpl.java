@@ -83,7 +83,7 @@ public class BoardServiceImpl implements BoardService{
         board.setTitle(title);
         board.setContent(content);
         board.setCategory(category);
-        board.setModifyDate(LocalDateTime.now());
+        board.setUpdateDate(LocalDateTime.now());
         this.boardRepository.save(board);
     }
     @Override
