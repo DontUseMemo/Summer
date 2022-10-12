@@ -29,8 +29,7 @@
 
             <div class="mb-3">
                 <label for="title">제목</label>
-                <input th:value="${board == null ? '' : board.title}" type="text" class="form-control"
-                       name="title" id="title" placeholder="제목을 입력해주세요">
+                <input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해주세요">
             </div>
 
 <!--            <div class="mb-3">-->
@@ -40,13 +39,12 @@
 
             <div class="mb-3">
                 <label for="content">내용</label>
-                <textarea th:text="${board == null ? '' : board.content}" class="form-control"
-                          rows="5" name="content" id="content" placeholder="내용을 입력해주세요"></textarea>
+                <textarea class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력해주세요"></textarea>
             </div>
 
             <div class="mb-3">
                 <label for="upload">파일 업로드</label>
-                <input type="file" class="form-control" name="content" id="upload" placeholder="내용을 입력해주세요">
+                <input type="file" class="form-control"  name="uploadfile" multiple="multiple" id="upload" placeholder="내용을 입력해주세요">
             </div>
 
             <button type="submit" class="btn btn-sm btn-primary" id="save">등록</button>
