@@ -2,8 +2,8 @@ package com.example.oppu.magazine;
 
 import com.example.oppu.base_entity.BaseTimeEntity;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
@@ -14,6 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @DynamicInsert
+@DynamicUpdate
 public class Magazine extends BaseTimeEntity {
 
     @Id
@@ -33,7 +34,6 @@ public class Magazine extends BaseTimeEntity {
     private String writer;
 
     //매거진 조회수
-    @ColumnDefault("0")
     @Column(nullable = false, updatable = false)
     private int views;
 
