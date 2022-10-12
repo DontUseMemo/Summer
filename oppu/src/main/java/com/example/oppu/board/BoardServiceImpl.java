@@ -39,14 +39,14 @@ public class BoardServiceImpl implements BoardService{
 
     //새글 쓰기
     @Override
-    public void insertBoard(String title, String category, String content, Member member) {
+    public Long insertBoard(String title, String category, String content, Member member) {
         Board board = new Board();
         board.setTitle(title);
         board.setCategory(category);
         board.setContent(content);
         board.setWriter(member);
         board.setCreateDate(LocalDateTime.now());
-        this.boardRepository.save(board);
+        return this.boardRepository.save(board).getId();
     }
 
     //게시글 목록보기
