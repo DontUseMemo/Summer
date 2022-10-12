@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -59,7 +59,7 @@
             </tr>
             <tr>
                 <th>작성일</th>
-                <td th:text="${board.createDate}">2022/5/5</td>
+                <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}">2022/5/5</td>
             </tr>
             <tr>
                 <th>조회수</th>
@@ -74,7 +74,7 @@
 <!--    href="/board/insert"-->
     <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
         <button onclick="location.href='/board/boardList'" type="button" class="btn btn-light">목록</button>
-        <button href="#" type="button" class="btn btn-light">수정</button>
+        <a th:href="@{|/board/modify/${board.id}|}" sec:authorize="isAuthenticated()" class="btn btn-light">수정</a>
         <button href="#" type="button" class="btn btn-light">삭제</button>
         <button onclick="location.href='/board/insert'" type="button" class="btn btn-light">글쓰기</button>
     </div>

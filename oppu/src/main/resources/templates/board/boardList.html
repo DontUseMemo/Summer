@@ -73,23 +73,23 @@
                     <span th:if="|(${#lists.size(board.replyList) > 0})|" th:text="|(${#lists.size(board.replyList)})|"></span>
                 </td>
                 <td th:text="${board.writer.nickname}"></td>
-                <td th:text="${board.createDate}"></td>
+                <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}"></td>
                 <td th:text="0"></td>
             </tr>
         </tbody>
     </table>
     <a th:href="@{/board/insert}" class="btn btn-light">글쓰기</a>
-    <form class="row mt-1 mb-3 justify-content-center" action="" method="GET">
+    <form class="row mt-1 mb-3 justify-content-center" method="GET">
         <div class="col-lg-2 col-auto">
-            <select class="form-select">
-                <option name="title" value="title">제목</option>
-                <option name="nickname" value="nickname">작성자</option>
-                <option name="content" value="content">내용</option>
+            <select name="searchCate" class="form-select">
+                <option value="title">제목</option>
+                <option value="nickname">작성자</option>
+                <option value="content">내용</option>
             </select>
         </div>
         <div class="col-lg-3 col-auto">
             <div class="input-group">
-                <input name="query" type="text" class="form-control" placeholder="검색어 입력">
+                <input name="searchKeyword" type="text" class="form-control" placeholder="검색어 입력">
                 <button class="btn btn-primary" type="submit">검색</button>
             </div>
         </div>
@@ -98,17 +98,46 @@
     <nav>
         <ul th:if="${!paging.isEmpty()}" class="pagination justify-content-center">
             <li class="page-item" th:unless="${paging.number == 0}">
-                <a class="page-link" th:href="@{|?page=${(paging.number)-1}|}">이전</a>
+                <a class="page-link" th:href="@{/board/boardList(page=${(paging.number)-1}, searchCate=${searchCate}, searchKeyword=${searchKeyword})}">이전</a>
             </li>
             <li class="page-item" th:each="page : ${#numbers.sequence(0, (paging.totalPages)-1)}"
                 th:if="${page >= (paging.number)-2 and page <= (paging.number)+2}">
-                <a class="page-link" th:text="${page}" th:href="@{|?page=${page}|}">1</a>
+                <a class="page-link" th:text="${page}" th:href="@{/board/boardList(page=${page}, searchCate=${searchCate}, searchKeyword=${searchKeyword})}">1</a>
             </li>
             <li class="page-item" th:unless="${paging.number == (paging.totalPages)-1}">
-                <a class="page-link" th:href="@{|?page=${(paging.number)+1}|}">다음</a>
+                <a class="page-link" th:href="@{/board/boardList(page=${(paging.number)+1}, searchCate=${searchCate}, searchKeyword=${searchKeyword})}">다음</a>
             </li>
         </ul>
     </nav>
+<!--    <nav>-->
+<!--        <ul th:if="${!paging.isEmpty()}" class="pagination justify-content-center">-->
+<!--            <li class="page-item" th:unless="${paging.number == 0}">-->
+<!--                <a class="page-link" th:href="@{/board/boardList(page=${(paging.number)-1}, searchCate=${searchCate}, searchKeyword=${searchKeyword})}">이전</a>-->
+<!--            </li>-->
+<!--            <li class="page-item" th:each="page : ${#numbers.sequence(0, (paging.totalPages)-1)}"-->
+<!--                th:if="${page >= (paging.number)-2 and page <= (paging.number)+2}">-->
+<!--                <a class="page-link" th:text="${page}" th:href="@{|?page=${page}|}">1</a>-->
+<!--            </li>-->
+<!--            <li class="page-item" th:unless="${paging.number == (paging.totalPages)-1}">-->
+<!--                <a class="page-link" th:href="@{/board/boardList(page=${(paging.number)+1}, searchCate=${searchCate}, searchKeyword=${searchKeyword})}">다음</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </nav>-->
+
+<!--    <nav>-->
+<!--        <ul th:if="${!paging.isEmpty()}" class="pagination justify-content-center">-->
+<!--            <li class="page-item" th:unless="${paging.number == 0}">-->
+<!--                <a class="page-link" th:href="@{|?page=${(paging.number)-1}|}">이전</a>-->
+<!--            </li>-->
+<!--            <li class="page-item" th:each="page : ${#numbers.sequence(0, (paging.totalPages)-1)}"-->
+<!--                th:if="${page >= (paging.number)-2 and page <= (paging.number)+2}">-->
+<!--                <a class="page-link" th:text="${page}" th:href="@{|?page=${page}|}">1</a>-->
+<!--            </li>-->
+<!--            <li class="page-item" th:unless="${paging.number == (paging.totalPages)-1}">-->
+<!--                <a class="page-link" th:href="@{|?page=${(paging.number)+1}|}">다음</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </nav>-->
 
 </div>
 

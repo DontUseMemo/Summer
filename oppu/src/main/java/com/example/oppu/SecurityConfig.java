@@ -22,7 +22,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/**").permitAll()
+        http.authorizeRequests()
+                //페이지 권한 설정
+                .mvcMatchers("/admin/**").hasRole("ADMIN")
+                .mvcMatchers("/member/myPage").authenticated()
+//                .antMatchers("/**").permitAll()
+                .anyRequest().permitAll()
 //                //h2
 //                .and()
 //                .csrf().ignoringAntMatchers("/h2-console/**")
@@ -30,12 +35,11 @@ public class SecurityConfig {
 //                .headers()
 //                .addHeaderWriter(new XFrameOptionsHeaderWriter(
 //                        XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN))
-//                //
-            .and()
+            .and() //로그인 설정
                 .formLogin()
                 .loginPage("/member/login")
                 .defaultSuccessUrl("/")
-            .and()
+            .and() //로그아웃 설정
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
                 .logoutSuccessUrl("/")
