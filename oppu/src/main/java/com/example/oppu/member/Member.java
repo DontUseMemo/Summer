@@ -34,12 +34,12 @@ public class Member extends BaseTimeEntity {
     @Column(unique = true)
     private String email;
 
-    //회원 경고 횟수
-    private int accrueReportNumber;
-
-    //회원 최근 로그인
-    private LocalDateTime recentLoginDate;
-
-    //계정 정지 상태 YN (BaseTimeEntity로 옮길 예정.)
-    private String stopYN;
+//    //회원 경고 횟수
+//    private int accrueReportNumber;
+//
+//    //회원 최근 로그인
+//    private LocalDateTime recentLoginDate;
+//
+//    //계정 정지 상태 YN (BaseTimeEntity로 옮길 예정.)
+//    private String stopYN;
 }
