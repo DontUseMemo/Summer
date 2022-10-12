@@ -28,13 +28,13 @@
     <form th:action="@{/member/updateMember}" method="post">
         <table class="table table-borderless">
             <tbody>
-            <!--                <tr>-->
-            <!--                    <th>아이디:</th>-->
-            <!--                    <td th:text="${member.id}">아이디 표시</td>-->
-            <!--                </tr>-->
             <tr>
                 <th>아이디:</th>
-                <td th:text="${member.nickname}">아이디 표시</td>
+                <td th:text="${member.username}">아이디 표시</td>
+            </tr>
+            <tr>
+                <th>닉네임:</th>
+                <td th:text="${member.nickname}">닉네임 표시</td>
             </tr>
             <tr>
                 <th>이메일:</th>
