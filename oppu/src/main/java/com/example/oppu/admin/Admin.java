@@ -38,12 +38,5 @@ public class Admin extends BaseTimeEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
-    //관리자 최근 로그인
-    @Temporal(TemporalType.DATE)
-    private Date recentLogin;
-
-    //관리자 권한 상태
-    @Column(nullable = false)
-    private String authorityYN;
 
 }

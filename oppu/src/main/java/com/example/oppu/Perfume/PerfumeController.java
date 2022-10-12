@@ -18,7 +18,7 @@ import java.util.List;
 
 @RequestMapping("/perfume")
 @Controller
-public class PerfumeController {
+public class  PerfumeController {
 
     //    private final PerfumeRepository perfumeRepo;
     private final PerfumeService perfumeService;

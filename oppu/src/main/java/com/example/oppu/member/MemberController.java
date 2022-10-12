@@ -2,8 +2,10 @@ package com.example.oppu.member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -54,7 +56,8 @@ public class MemberController {
 
     // 마이페이지
     @GetMapping("/myPage")
-    public String myPage() {
+    public String myPage(Model model, Member member) {
+        model.addAttribute("member", member);
         return "/member/myPage";
     }
 };

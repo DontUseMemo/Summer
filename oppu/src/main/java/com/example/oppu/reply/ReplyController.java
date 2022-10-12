@@ -27,7 +27,7 @@ public class ReplyController {
     //댓글 생성하기
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/create/{id}")
-    public String createAnswer(@PathVariable("id") Long id, @RequestParam String reply, Principal principal) {
+    public String insertReply(@PathVariable("id") Long id, @RequestParam String reply, Principal principal) {
         Board board = this.boardService.getBoardRequest(id);
         Member member = this.memberService.getMember(principal.getName());
         this.replyService.create(board, reply, member);

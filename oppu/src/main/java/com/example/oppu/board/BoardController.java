@@ -140,7 +140,7 @@ public class BoardController {
         // ResponseEntity<byte[]> : 메서드 리턴타입으로 이미기 데이터를 송신하기 위한 객체<바이트 배열>
         // throws IOExeception : 스트림방식으로 데이터를 전송하 ㄹ때 도중에 오류가 날 경우를 찾기 위해서 선언한 Exception
 
-        String path = "C:\\\\Summer\\\\oppu\\\\src\\\\main\\\\resources\\\\static\\\\upload\\\\" + imagename;
+        String path = "C:\\\\Users\\\\user\\\\Desktop\\\\Coding\\\\Summer2\\\\oppu\\\\src\\\\main\\\\resources\\\\static\\\\upload\\\\" + imagename;
         //File을 컴퓨터가 이해하기 위해서 Stream 배열을 만들어서 작업
         //객체(데이터 저장) : String , int ,double
         //Stream 객체는 파일을 컴퓨터가 cpu에서 바로 읽어들일 수 있도록 하는 객체
@@ -191,5 +191,12 @@ public class BoardController {
         }
         this.boardService.modify(board, boardForm.getTitle(), boardForm.getCategory(), boardForm.getContent());
         return String.format("redirect:/board/getBoard/%s", id);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/deleteBoard")
+    public String deleteBoard(Board board) {
+        boardService.deleteBoard(board);
+        return "redirect:/board/boardList";
     }
 }

@@ -84,7 +84,7 @@
     <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
         <button onclick="location.href='/board/boardList'" type="button" class="btn btn-light">목록</button>
         <a th:href="@{|/board/modify/${board.id}|}" sec:authorize="isAuthenticated()" class="btn btn-light">수정</a>
-        <button href="#" type="button" class="btn btn-light">삭제</button>
+        <a th:href="@{/board/deleteBoard}" sec:authorize="isAuthenticated()" class="btn btn-light">삭제</a>
         <button onclick="location.href='/board/insert'" type="button" class="btn btn-light">글쓰기</button>
     </div>
     <p th:text="|${#lists.size(board.replyList)}개의 답변이 있습니다.|"></p>
