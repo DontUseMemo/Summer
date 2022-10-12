@@ -68,6 +68,11 @@
             <tr>
                 <td colspan="2" th:text="${board.content}">게시글 내용이 출력될 예정</td>
             </tr>
+            <tr>
+                <td th:each="img : ${imgLoading}">
+                    <img th:src="@{${img}}"/>
+                </td>
+            </tr>
         </tbody>
     </table>
 <!--    href="/board/boardList"-->
