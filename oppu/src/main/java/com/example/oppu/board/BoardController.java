@@ -164,6 +164,7 @@ public class BoardController {
 //        this.boardService.insertBoard(category, title, member, content);
 //        return "redirect:/board/boardList";
 //    }
+
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/modify/{id}")
     public String updateBoard(Model model, BoardForm boardForm, @PathVariable("id") Long id, Principal principal) {
