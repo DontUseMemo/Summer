@@ -13,4 +13,6 @@ public interface MemberService {
     Member getMember(String username);
 
     Page<Member> getList(String searchCate, String searchKeyword, Pageable pageable);
+
+    Member updateMember(Member member);
 }

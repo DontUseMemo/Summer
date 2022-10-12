@@ -52,4 +52,11 @@ public class MemberServiceImpl implements MemberService{
 
         return members;
     }
+
+    @Override
+    public Member updateMember(Member member) {
+        this.memberRepository.save(member);
+        return member;
+    }
+
 }

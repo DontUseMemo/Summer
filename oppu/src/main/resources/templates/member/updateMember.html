@@ -25,36 +25,36 @@
 <div th:replace="/fragment/nav :: side-nav"></div>
 <div class="container">
     <h1>내정보 수정</h1>
-    <form>
+    <form th:action="@{/member/updateMember}" method="post">
         <table class="table table-borderless">
             <tbody>
-                <tr>
-                    <th>아이디:</th>
-                    <td>아이디 표시</td>
-                </tr>
-                <tr>
-                    <th>닉네임:</th>
-                    <td>닉네임 표시</td>
-                </tr>
-                <tr>
-                    <th>이메일:</th>
-                    <td>이메일 표시</td>
-                </tr>
-                <tr>
-                    <th>비밀번호:</th>
-                    <td>
-                        <input type="text" class="form-control" placeholder="비밀번호를 입력해주세요">
-                    </td>
-                </tr>
-                <tr>
-                    <th>비밀번호 확인:</th>
-                    <td>
-                        <input type="text" class="form-control" placeholder="비밀번호를 입력해주세요">
-                    </td>
-                </tr>
+            <tr>
+                <th>아이디:</th>
+                <td th:text="${member.username}">아이디 표시</td>
+            </tr>
+            <tr>
+                <th>닉네임:</th>
+                <td th:text="${member.nickname}">닉네임 표시</td>
+            </tr>
+            <tr>
+                <th>이메일:</th>
+                <td th:text="${member.email}">이메일 표시</td>
+            </tr>
+            <tr>
+                <th>비밀번호:</th>
+                <td>
+                    <input type="text" class="form-control" id="password" name="password1" placeholder="비밀번호를 입력해주세요">
+                </td>
+            </tr>
+            <tr>
+                <th>비밀번호 확인:</th>
+                <td>
+                    <input type="text" class="form-control" id="password-check" name="password2" placeholder="비밀번호를 입력해주세요">
+                </td>
+            </tr>
             </tbody>
         </table>
-        <button type="submit" class="btn btn-primary">저장</button>
+        <button type="submit" class="btn btn-primary">변경</button>
     </form>
 </div>
 <div th:replace="/fragment/footer :: footer"></div>
