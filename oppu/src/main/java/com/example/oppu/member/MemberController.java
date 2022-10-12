@@ -1,13 +1,18 @@
 package com.example.oppu.member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.security.Principal;
+import java.util.Objects;
 
 @RequiredArgsConstructor
 @Controller
@@ -15,6 +20,8 @@ import javax.validation.Valid;
 public class MemberController {
 
     private final MemberService memberService;
+
+    private final PasswordEncoder passwordEncoder;
 
     //회원가입
     @GetMapping("/signUp")
@@ -54,7 +61,33 @@ public class MemberController {
 
     // 마이페이지
     @GetMapping("/myPage")
-    public String myPage() {
+    public String myPage(Principal principal, Model model) {
+        Member member = memberService.getMember(principal.getName());
+        model.addAttribute("member", member);
         return "/member/myPage";
     }
+
+    @GetMapping("/updateMember")
+    public String updateMember(Principal principal, Model model) {
+        Member member = memberService.getMember(principal.getName());
+        model.addAttribute("member", member);
+        return "/member/updateMember";
+    }
+
+    @PostMapping("/updateMember")
+    public String updatePassword(@RequestParam("password1") String password1,
+                                 @RequestParam("password2") String password2,
+                                 Principal principal) {
+        try {
+            if (Objects.equals(password1, password2)) {
+                Member checkedMember = memberService.getMember(principal.getName());
+                checkedMember.setPassword(passwordEncoder.encode(password1));
+                memberService.updateMember(checkedMember);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/member/myPage";
+    }
+
 };
