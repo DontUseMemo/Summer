@@ -18,9 +18,7 @@ import java.util.Optional;
 @Service
 public class BoardServiceImpl implements BoardService{
     private final BoardRepository boardRepository;
-
     private final FileUploadInfoRepository fileUploadInfoRepository;
-
 
     //페이징 이전 게시글 리스트로 불러오기
 //    public List<Board> getList() {
@@ -88,7 +86,7 @@ public class BoardServiceImpl implements BoardService{
         board.setUpdateDate(LocalDateTime.now());
         this.boardRepository.save(board);
     }
-
+    @Override
     public Long insertFileUploadEntity(FileUploadEntity fileUploadEntity) {
 
         return fileUploadInfoRepository.save(fileUploadEntity).getId();
