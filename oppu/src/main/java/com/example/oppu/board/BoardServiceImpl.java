@@ -19,8 +19,6 @@ import java.util.Optional;
 public class BoardServiceImpl implements BoardService{
     private final BoardRepository boardRepository;
 
-    private final FileUploadInfoRepository fileUploadInfoRepository;
-
     //페이징 이전 게시글 리스트로 불러오기
 //    public List<Board> getList() {
 //        return this.boardRepository.findAll();
@@ -40,14 +38,14 @@ public class BoardServiceImpl implements BoardService{
 
     //새글 쓰기
     @Override
-    public Long insertBoard(String title, String category, String content, Member member) {
+    public void insertBoard(String title, String category, String content, Member member) {
         Board board = new Board();
         board.setTitle(title);
         board.setCategory(category);
         board.setContent(content);
         board.setWriter(member);
         board.setCreateDate(LocalDateTime.now());
-        return this.boardRepository.save(board).getId();
+        this.boardRepository.save(board);
     }
 
     //게시글 목록보기
@@ -86,18 +84,5 @@ public class BoardServiceImpl implements BoardService{
         board.setCategory(category);
         board.setUpdateDate(LocalDateTime.now());
         this.boardRepository.save(board);
-    }
-
-    public Long insertFileUploadEntity(FileUploadEntity fileUploadEntity) {
-
-        return fileUploadInfoRepository.save(fileUploadEntity).getId();
-
-        //getId > 테이블의 pk값을 가져옴, 테이블의 연동성에 좋음.
-        //DB에 들어간 이후에 pk값을 알 수 있음.
-
-    }
-
-    public List<FileUploadEntity> getFileuploadEntity2(Long board_id) {
-        return fileUploadInfoRepository.findByBoardSeq(board_id);
     }
 }
