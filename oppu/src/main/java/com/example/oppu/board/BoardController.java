@@ -77,6 +77,7 @@ public class BoardController {
         }
         Member member = this.memberService.getMember(principal.getName());
         this.boardService.insertBoard(boardForm.getTitle(), boardForm.getCategory(), boardForm.getContent(), member);
+
         return "redirect:/board/boardList";
     }
 //
@@ -90,7 +91,7 @@ public class BoardController {
 //        this.boardService.insertBoard(category, title, member, content);
 //        return "redirect:/board/boardList";
 //    }
-
+mmmmmmmmmmmmmmmmmm롤백용
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/modify/{id}")
     public String boardModify(Model model, BoardForm boardForm, @PathVariable("id") Long id, Principal principal) {
