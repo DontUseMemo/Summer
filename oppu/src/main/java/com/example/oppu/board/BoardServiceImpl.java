@@ -101,9 +101,14 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public void deleteBoard(Board board) {
-        Board findBoard = boardRepository.findById(board.getId()).get();
-        findBoard.setDeleteYN("Y");
-        boardRepository.save(board);
+    public Board deleteBoard(Long id) {
+        Optional<Board> board = boardRepository.findById(id);
+        if (board.isPresent()) {
+            board.get().setDeleteYN("Y");
+            return boardRepository.save(board.get());
+        } else {
+            throw new DataNotFoundException("board not found");
+        }
+//        boardRepository.save(board);
     }
 }
