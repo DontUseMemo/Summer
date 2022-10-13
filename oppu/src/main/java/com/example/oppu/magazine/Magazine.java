@@ -33,11 +33,4 @@ public class Magazine extends BaseTimeEntity {
     @Column(length = 40, nullable = false, updatable = false)
     private String writer;
 
-    //매거진 조회수
-    @Column(nullable = false, updatable = false)
-    private int views;
-
-    //매거진 추천수
-    @Column(nullable = false, updatable = false)
-    private int recommendNumber;
 }

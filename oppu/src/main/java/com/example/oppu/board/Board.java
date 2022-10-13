@@ -20,7 +20,7 @@ import java.util.List;
 public class Board extends BaseTimeEntity{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     //유저 닉네임 삭제 예정

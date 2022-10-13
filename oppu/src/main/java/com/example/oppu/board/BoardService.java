@@ -29,4 +29,6 @@ public interface BoardService {
     Long insertFileUploadEntity(FileUploadEntity fileUploadEntity);
 
     List<FileUploadEntity> getFileuploadEntity2(Long board_seq);
+
+    void deleteBoard(Board board);
 }

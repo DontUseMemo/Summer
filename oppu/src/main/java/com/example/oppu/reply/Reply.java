@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 public class Reply extends BaseTimeEntity{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     //댓글 내용

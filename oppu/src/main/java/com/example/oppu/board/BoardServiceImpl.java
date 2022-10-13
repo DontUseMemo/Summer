@@ -99,4 +99,11 @@ public class BoardServiceImpl implements BoardService{
     public List<FileUploadEntity> getFileuploadEntity2(Long board_id) {
         return fileUploadInfoRepository.findByBoardSeq(board_id);
     }
+
+    @Override
+    public void deleteBoard(Board board) {
+        Board findBoard = boardRepository.findById(board.getId()).get();
+        findBoard.setDeleteYN("Y");
+        boardRepository.save(board);
+    }
 }
