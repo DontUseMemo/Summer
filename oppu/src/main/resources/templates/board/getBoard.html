@@ -65,27 +65,23 @@
             </tr>
             <tr>
                 <td colspan="2" th:text="${board.content}">
-                    <p th:text="${board.content}"></p>
-                    <div th:each="img : ${imgLoading}">
-                        <img th:src="@{${img}}" />
-                    </div>
                 </td>
             </tr>
-<!--            <tr>-->
-<!--                <td th:each="img : ${imgLoading}">-->
-<!--                    <img th:src="@{${img}}"/>-->
-<!--                </td>-->
-<!--            </tr>-->
+            <tr>
+                <td th:each="img : ${imgLoading}">
+                    <img th:src="@{${img}}"/>
+                </td>
+            </tr>
         </tbody>
     </table>
 <!--    href="/board/boardList"-->
 <!--    href="/board/insert"-->
     <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
         <button onclick="location.href='/board/boardList'" type="button" class="btn btn-light">목록</button>
-        <a th:if="${#authentication.getName() == board.writer.nickname}"
+        <a th:if="${#authentication.getName() == board.writer.username}"
            th:href="@{|/board/modify/${board.id}|}" sec:authorize="isAuthenticated()" class="btn btn-light">수정</a>
-        <button th:if="${#authentication.getName() == board.writer.nickname}"
-                href="#" type="button" class="btn btn-light">삭제</button>
+        <a th:if="${#authentication.getName() == board.writer.username}"
+                th:href="@{|/board/deleteBoard/${board.id}|}" type="button" class="btn btn-light">삭제</a>
         <button sec:authorize="isAuthenticated()" onclick="location.href='/board/insert'"
                 type="button" class="btn btn-light">글쓰기</button>
     </div>

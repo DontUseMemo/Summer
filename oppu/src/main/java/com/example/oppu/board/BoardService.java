@@ -3,10 +3,8 @@ package com.example.oppu.board;
 import com.example.oppu.member.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface BoardService {
 
@@ -30,5 +28,5 @@ public interface BoardService {
 
     List<FileUploadEntity> getFileuploadEntity2(Long board_seq);
 
-    void deleteBoard(Board board);
+    Board deleteBoard(Long id);
 }

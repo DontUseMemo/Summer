@@ -185,6 +185,7 @@ public class BoardController {
             return "/board/insertBoard";
         }
         Board board = this.boardService.getBoardRequest(id);
+        System.out.println("====================="+"================"+id);
         if (!board.getWriter().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
@@ -193,9 +194,9 @@ public class BoardController {
     }
 
     @PreAuthorize("isAuthenticated()")
-    @GetMapping("/deleteBoard")
-    public String deleteBoard(Board board) {
-        boardService.deleteBoard(board);
+    @GetMapping("/deleteBoard/{id}")
+    public String deleteBoard(@PathVariable("id") Long id) {
+        boardService.deleteBoard(id);
         return "redirect:/board/boardList";
     }
 }
