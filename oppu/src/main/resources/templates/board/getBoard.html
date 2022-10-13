@@ -16,11 +16,11 @@
             color: #525252;
         }
 
-        #board tbody tr:last-child {
+        #board tbody tr:last-child, #board tbody tr:nth-child(6) {
             border-bottom: none;
         }
 
-        #board tbody tr:last-child td {
+        #board tbody tr:last-child td, #board tbody tr:nth-child(6) td {
             border-bottom: none;
         }
         #board { margin-bottom: 200px; }
@@ -68,8 +68,8 @@
                 </td>
             </tr>
             <tr>
-                <td th:each="img : ${imgLoading}">
-                    <img th:src="@{${img}}"/>
+                <td colspan="2" th:each="img : ${imgLoading}">
+                    <img class="img-fluid" th:src="@{${img}}"/>
                 </td>
             </tr>
         </tbody>
