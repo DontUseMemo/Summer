@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -29,7 +29,7 @@
             margin-top: 30px;
         }
 
-        #board tbody tr:last-child { height: 200px; }
+        #board { margin-bottom: 200px; }
 
         #reply tr th { width: 23%; }
         #reply tr { height: 50px; }
@@ -72,9 +72,10 @@
     </table>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
         <button onclick="location.href='/magazine/magazineList'" type="button" class="btn btn-light">목록</button>
-        <button href="%" type="button" class="btn btn-light">수정</button>
-        <button th:onclick="|location.href='@{/magazine/deleteMagazine(id=${magazine.id})}'|" type="button" class="btn btn-light">삭제</button>
-        <button href="#" type="button" class="btn btn-light">글쓰기</button>
+        <button sec:authorize="hasRole('ROLE_ADMIN')" href="%" type="button" class="btn btn-light">수정</button>
+        <button sec:authorize="hasRole('ROLE_ADMIN')"
+                th:onclick="|location.href='@{/magazine/deleteMagazine(id=${magazine.id})}'|" type="button" class="btn btn-light">삭제</button>
+        <button sec:authorize="hasRole('ROLE_ADMIN')" href="#" type="button" class="btn btn-light">글쓰기</button>
     </div>
 </div>
 
