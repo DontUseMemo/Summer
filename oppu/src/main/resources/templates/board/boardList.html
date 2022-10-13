@@ -109,36 +109,6 @@
             </li>
         </ul>
     </nav>
-<!--    <nav>-->
-<!--        <ul th:if="${!paging.isEmpty()}" class="pagination justify-content-center">-->
-<!--            <li class="page-item" th:unless="${paging.number == 0}">-->
-<!--                <a class="page-link" th:href="@{/board/boardList(page=${(paging.number)-1}, searchCate=${searchCate}, searchKeyword=${searchKeyword})}">이전</a>-->
-<!--            </li>-->
-<!--            <li class="page-item" th:each="page : ${#numbers.sequence(0, (paging.totalPages)-1)}"-->
-<!--                th:if="${page >= (paging.number)-2 and page <= (paging.number)+2}">-->
-<!--                <a class="page-link" th:text="${page}" th:href="@{|?page=${page}|}">1</a>-->
-<!--            </li>-->
-<!--            <li class="page-item" th:unless="${paging.number == (paging.totalPages)-1}">-->
-<!--                <a class="page-link" th:href="@{/board/boardList(page=${(paging.number)+1}, searchCate=${searchCate}, searchKeyword=${searchKeyword})}">다음</a>-->
-<!--            </li>-->
-<!--        </ul>-->
-<!--    </nav>-->
-
-<!--    <nav>-->
-<!--        <ul th:if="${!paging.isEmpty()}" class="pagination justify-content-center">-->
-<!--            <li class="page-item" th:unless="${paging.number == 0}">-->
-<!--                <a class="page-link" th:href="@{|?page=${(paging.number)-1}|}">이전</a>-->
-<!--            </li>-->
-<!--            <li class="page-item" th:each="page : ${#numbers.sequence(0, (paging.totalPages)-1)}"-->
-<!--                th:if="${page >= (paging.number)-2 and page <= (paging.number)+2}">-->
-<!--                <a class="page-link" th:text="${page}" th:href="@{|?page=${page}|}">1</a>-->
-<!--            </li>-->
-<!--            <li class="page-item" th:unless="${paging.number == (paging.totalPages)-1}">-->
-<!--                <a class="page-link" th:href="@{|?page=${(paging.number)+1}|}">다음</a>-->
-<!--            </li>-->
-<!--        </ul>-->
-<!--    </nav>-->
-
 </div>
 
 <div th:replace="/fragment/footer :: footer"></div>
